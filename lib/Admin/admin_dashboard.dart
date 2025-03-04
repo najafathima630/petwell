@@ -1,0 +1,310 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
+
+class UserDetails extends StatefulWidget {
+  const UserDetails({super.key});
+
+  @override
+  State<UserDetails> createState() => _UserDetailsState();
+}
+
+class _UserDetailsState extends State<UserDetails> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Color(0xff5CB15A),
+        title: Padding(
+          padding:  EdgeInsets.only(left: 130.h),
+          child: Text(
+            "DashBoard",
+            style:
+            GoogleFonts.poppins(fontWeight: FontWeight.w500, fontSize: 20.sp),
+          ),
+        ),
+        leading: IconButton(onPressed: () {}, icon: Icon(Icons.person)),
+      ),
+      body: Column(
+        children: [
+          Row(
+            children: [
+              Padding(
+                padding:  EdgeInsets.only(left: 20.w, top: 70.h),
+                child: Container(
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          Padding(
+                            padding:  EdgeInsets.only(top: 40.h, left: 70.w),
+                            child: Text(
+                              "40",
+                              style: GoogleFonts.poppins(
+                                  color: Colors.black,
+                                  fontSize: 40.sp,
+                                  fontWeight: FontWeight.w500),
+                            ),
+                          )
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Padding(
+                            padding:  EdgeInsets.only(left: 50.w),
+                            child: Text(
+                              "Users",
+                              style: GoogleFonts.poppins(
+                                  color: Colors.black,
+                                  fontSize: 25.sp,
+                                  fontWeight: FontWeight.w300),
+                            ),
+                          )
+                        ],
+                      )
+                    ],
+                  ),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15.sp),
+                      border: Border.all(width: 1.sp, color: Colors.black)),
+                  height: 150.h,
+                  width: 180.w,
+                ),
+              ),
+              Row(
+                children: [
+                  Padding(
+                    padding:  EdgeInsets.only(left: 10.w, top: 70.h),
+                    child: Container(
+                      child: Column(
+                        children: [
+                          Row(
+                            children: [
+                              Padding(
+                                padding:
+                                 EdgeInsets.only(top: 40.h, left: 70.w),
+                                child: Text(
+                                  "20",
+                                  style: GoogleFonts.poppins(
+                                      color: Colors.black,
+                                      fontSize: 40.sp,
+                                      fontWeight: FontWeight.w500),
+                                ),
+                              )
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(left: 30),
+                                child: Text(
+                                  "Doctors",
+                                  style: GoogleFonts.poppins(
+                                      color: Colors.black,
+                                      fontSize: 25,
+                                      fontWeight: FontWeight.w300),
+                                ),
+                              )
+                            ],
+                          )
+                        ],
+                      ),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          border: Border.all(width: 1, color: Colors.black)),
+                      height: 150,
+                      width: 180,
+                    ),
+                  )
+                ],
+              ),
+            ],
+          ),
+          Row(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 10, top: 30),
+                child: Container(
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(top: 40, left: 70),
+                            child: Text(
+                              "4",
+                              style: GoogleFonts.poppins(
+                                  color: Colors.black,
+                                  fontSize: 40,
+                                  fontWeight: FontWeight.w500),
+                            ),
+                          )
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 20),
+                            child: Text(
+                              "Grooming",
+                              style: GoogleFonts.poppins(
+                                  color: Colors.black,
+                                  fontSize: 25,
+                                  fontWeight: FontWeight.w300),
+                            ),
+                          )
+                        ],
+                      )
+                    ],
+                  ),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      border: Border.all(width: 1, color: Colors.black)),
+                  height: 150,
+                  width: 180,
+                ),
+              ),
+              Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10, top: 30),
+                    child: Container(
+                      child: Column(
+                        children: [
+                          Row(
+                            children: [
+                              Padding(
+                                padding:
+                                const EdgeInsets.only(top: 40, left: 70),
+                                child: Text(
+                                  "6",
+                                  style: GoogleFonts.poppins(
+                                      color: Colors.black,
+                                      fontSize: 40,
+                                      fontWeight: FontWeight.w500),
+                                ),
+                              )
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(left: 50),
+                                child: Text(
+                                  "Food",
+                                  style: GoogleFonts.poppins(
+                                      color: Colors.black,
+                                      fontSize: 25,
+                                      fontWeight: FontWeight.w300),
+                                ),
+                              )
+                            ],
+                          )
+                        ],
+                      ),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          border: Border.all(width: 1, color: Colors.black)),
+                      height: 150,
+                      width: 180,
+                    ),
+                  )
+                ],
+              )
+            ],
+          ),
+          Row(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 10, top: 70),
+                child: Container(
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(top: 40, left: 70),
+                            child: Text(
+                              "10",
+                              style: GoogleFonts.poppins(
+                                  color: Colors.black,
+                                  fontSize: 40,
+                                  fontWeight: FontWeight.w500),
+                            ),
+                          )
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 10),
+                            child: Text(
+                              "Notifications",
+                              style: GoogleFonts.poppins(
+                                  color: Colors.black,
+                                  fontSize: 25,
+                                  fontWeight: FontWeight.w300),
+                            ),
+                          )
+                        ],
+                      )
+                    ],
+                  ),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      border: Border.all(width: 1, color: Colors.black)),
+                  height: 150,
+                  width: 180,
+                ),
+              ),
+              Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10, top: 70),
+                    child: Container(
+                      child: Column(
+                        children: [
+                          Row(
+                            children: [
+                              Padding(
+                                  padding:
+                                  const EdgeInsets.only(top: 40, left: 70),
+                                  child: Icon(
+                                    Icons.logout,
+                                    size: 40,
+                                  ))
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(left: 50),
+                                child: Text(
+                                  "LOg out",
+                                  style: GoogleFonts.poppins(
+                                      color: Colors.black,
+                                      fontSize: 25,
+                                      fontWeight: FontWeight.w300),
+                                ),
+                              )
+                            ],
+                          )
+                        ],
+                      ),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          border: Border.all(width: 1, color: Colors.black)),
+                      height: 150,
+                      width: 180,
+                    ),
+                  )
+                ],
+              )
+            ],
+          )
+        ],
+      ),
+    );
+  }
+}
