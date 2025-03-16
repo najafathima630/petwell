@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class doctor_details extends StatefulWidget {
@@ -25,7 +26,7 @@ class _doctor_detailsState extends State<doctor_details> {
                 style: GoogleFonts.inter(fontSize: 15,fontWeight: FontWeight.bold),
               ),
               Padding(
-                padding: EdgeInsets.only(left: 130),
+                padding: EdgeInsets.only(left: 130.w),
                 child: Text(
                   "See all",
                   style: GoogleFonts.inter(color: Color(0xff46E4E4)),
