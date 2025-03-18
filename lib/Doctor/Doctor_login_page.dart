@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:petwell_project/Doctor/Doctor_signup_page.dart';
+import 'package:petwell_project/Doctor/user_details.dart';
 
-class AdminLogin extends StatefulWidget {
-  const AdminLogin({super.key});
+import 'Tabbar.dart';
+
+class DoctorLoginPage extends StatefulWidget {
+  const DoctorLoginPage({super.key});
 
   @override
-  State<AdminLogin> createState() => _AdminLoginState();
+  State<DoctorLoginPage> createState() => _DoctorLoginPageState();
 }
 
-class _AdminLoginState extends State<AdminLogin> {
+class _DoctorLoginPageState extends State<DoctorLoginPage> {
   final form_key = GlobalKey<FormState>();
   var passowrdctrl = TextEditingController();
   var Emailctrl = TextEditingController();
@@ -118,9 +122,9 @@ class _AdminLoginState extends State<AdminLogin> {
                                 padding: EdgeInsets.only(left: 80.w, top: 50.h),
                                 child: InkWell(
                                   onTap: () {
-                                    // Navigator.push(context, MaterialPageRoute(builder: (context) {
-                                    //   return NavigationBarMechanic();
-                                    // },));
+                                    Navigator.push(context, MaterialPageRoute(builder: (context) {
+                                      return DoctorTapbar();
+                                    },));
                                   },
                                   child: Container(
                                     child: Center(
@@ -182,11 +186,11 @@ class _AdminLoginState extends State<AdminLogin> {
                 ),
                 TextButton(
                     onPressed: () {
-                      // Navigator.push(context, MaterialPageRoute(
-                      //   builder: (context) {
-                      //     return user_signup();
-                      //   },
-                      // ));
+                      Navigator.push(context, MaterialPageRoute(
+                        builder: (context) {
+                          return DoctorSignupPage();
+                        },
+                      ));
                     },
                     child: Text(
                       "Sign up",

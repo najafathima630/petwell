@@ -1,10 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:petwell_project/Doctor/Doctor_login_page.dart';
+import 'package:petwell_project/Doctor/doctor_notification.dart';
 import 'package:petwell_project/Doctor/user_details.dart';
 
 import 'Add_vaccination.dart';
-
 
 class DoctorTapbar extends StatefulWidget {
   const DoctorTapbar({super.key});
@@ -22,13 +23,29 @@ class _DoctorTapbarState extends State<DoctorTapbar> {
         appBar: AppBar(
           leading: IconButton(
             icon: Icon(Icons.arrow_back, color: Colors.black),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(
+                builder: (context) {
+                  return DoctorLoginPage();
+                },
+              ));
+            },
           ),
-          actions: [Icon(Icons.notifications)],
+          actions: [
+            IconButton(
+              icon: Icon(Icons.notifications, color: Colors.black),
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(
+                  builder: (context) {
+                    return DoctorNotification();
+                  },
+                ));
+              },
+            ),
+          ],
           title: Padding(
             padding: EdgeInsets.only(left: 60.w),
-            child:
-            Text("User details", style: TextStyle(color: Colors.black)),
+            child: Text("User details", style: TextStyle(color: Colors.black)),
           ),
           bottom: TabBar(
             labelColor: Colors.white,
@@ -65,14 +82,15 @@ class _DoctorTapbarState extends State<DoctorTapbar> {
               ),
             ],
           ),
-        ),body: TabBarView(
-        children: [
-          User_details(), // Call the first class
-          view_appoiment_details(),
+        ),
+        body: TabBarView(
+          children: [
+            User_details(), // Call the first class
+            view_appoiment_details(),
 
-          // Call the second class
-        ],
-      ),
+            // Call the second class
+          ],
+        ),
       ),
     );
   }

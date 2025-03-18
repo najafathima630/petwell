@@ -1,11 +1,38 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:petwell_project/Doctor/Tabbar.dart';
 
-class UserNotificationScreen extends StatelessWidget {
+class DoctorNotification extends StatefulWidget {
+  const DoctorNotification({super.key});
+
+  @override
+  State<DoctorNotification> createState() => _DoctorNotificationState();
+}
+
+class _DoctorNotificationState extends State<DoctorNotification> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.green,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.black),
+          onPressed: () {
+            Navigator.push(context, MaterialPageRoute(
+              builder: (context) {
+                return DoctorTapbar();
+              },
+            ));
+          },
+        ),
+        title: Padding(
+          padding: EdgeInsets.only(left: 50.w),
+          child: Text("Doctor Notification",
+              style: TextStyle(color: Colors.black)),
+        ),
+      ),
       backgroundColor: Color(0xffFFFFFF),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),

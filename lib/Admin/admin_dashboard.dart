@@ -17,28 +17,35 @@ class _UserDetailsState extends State<UserDetails> {
       appBar: AppBar(
         backgroundColor: Color(0xff5CB15A),
         title: Padding(
-          padding:  EdgeInsets.only(left: 130.h),
+          padding: EdgeInsets.only(left: 130.h),
           child: Text(
             "DashBoard",
-            style:
-            GoogleFonts.poppins(fontWeight: FontWeight.w500, fontSize: 20.sp),
+            style: GoogleFonts.poppins(
+                fontWeight: FontWeight.w500, fontSize: 20.sp),
           ),
         ),
-        leading: IconButton(onPressed: () {}, icon: Icon(Icons.person)),
+        actions: [
+          IconButton(
+              onPressed: () {},
+              icon: Icon(
+                Icons.person,
+                color: Colors.white,
+              )),
+        ],
       ),
       body: Column(
         children: [
           Row(
             children: [
               Padding(
-                padding:  EdgeInsets.only(left: 20.w, top: 70.h),
+                padding: EdgeInsets.only(left: 20.w, top: 70.h),
                 child: Container(
                   child: Column(
                     children: [
                       Row(
                         children: [
                           Padding(
-                            padding:  EdgeInsets.only(top: 40.h, left: 70.w),
+                            padding: EdgeInsets.only(top: 40.h, left: 70.w),
                             child: Text(
                               "40",
                               style: GoogleFonts.poppins(
@@ -52,7 +59,7 @@ class _UserDetailsState extends State<UserDetails> {
                       Row(
                         children: [
                           Padding(
-                            padding:  EdgeInsets.only(left: 50.w),
+                            padding: EdgeInsets.only(left: 50.w),
                             child: Text(
                               "Users",
                               style: GoogleFonts.poppins(
@@ -75,15 +82,14 @@ class _UserDetailsState extends State<UserDetails> {
               Row(
                 children: [
                   Padding(
-                    padding:  EdgeInsets.only(left: 10.w, top: 70.h),
+                    padding: EdgeInsets.only(left: 10.w, top: 70.h),
                     child: Container(
                       child: Column(
                         children: [
                           Row(
                             children: [
                               Padding(
-                                padding:
-                                 EdgeInsets.only(top: 40.h, left: 70.w),
+                                padding: EdgeInsets.only(top: 40.h, left: 70.w),
                                 child: Text(
                                   "20",
                                   style: GoogleFonts.poppins(
@@ -102,7 +108,7 @@ class _UserDetailsState extends State<UserDetails> {
                                   "Doctors",
                                   style: GoogleFonts.poppins(
                                       color: Colors.black,
-                                      fontSize: 25,
+                                      fontSize: 25.sp,
                                       fontWeight: FontWeight.w300),
                                 ),
                               )
@@ -113,8 +119,8 @@ class _UserDetailsState extends State<UserDetails> {
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(15),
                           border: Border.all(width: 1, color: Colors.black)),
-                      height: 150,
-                      width: 180,
+                      height: 150.h,
+                      width: 180.w,
                     ),
                   )
                 ],
@@ -124,14 +130,14 @@ class _UserDetailsState extends State<UserDetails> {
           Row(
             children: [
               Padding(
-                padding: const EdgeInsets.only(left: 10, top: 30),
+                padding: EdgeInsets.only(left: 20.w, top: 30.h),
                 child: Container(
                   child: Column(
                     children: [
                       Row(
                         children: [
                           Padding(
-                            padding: const EdgeInsets.only(top: 40, left: 70),
+                            padding: EdgeInsets.only(top: 20.h, left: 70.w),
                             child: Text(
                               "4",
                               style: GoogleFonts.poppins(
@@ -145,7 +151,7 @@ class _UserDetailsState extends State<UserDetails> {
                       Row(
                         children: [
                           Padding(
-                            padding: const EdgeInsets.only(left: 20),
+                            padding: EdgeInsets.only(left: 20.w),
                             child: Text(
                               "Grooming",
                               style: GoogleFonts.poppins(
@@ -161,22 +167,21 @@ class _UserDetailsState extends State<UserDetails> {
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15),
                       border: Border.all(width: 1, color: Colors.black)),
-                  height: 150,
-                  width: 180,
+                  height: 150.h,
+                  width: 180.w,
                 ),
               ),
               Row(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(left: 10, top: 30),
+                    padding: EdgeInsets.only(left: 10.w, top: 30.h),
                     child: Container(
                       child: Column(
                         children: [
                           Row(
                             children: [
                               Padding(
-                                padding:
-                                const EdgeInsets.only(top: 40, left: 70),
+                                padding: EdgeInsets.only(top: 20.h, left: 70.w),
                                 child: Text(
                                   "6",
                                   style: GoogleFonts.poppins(
@@ -190,7 +195,7 @@ class _UserDetailsState extends State<UserDetails> {
                           Row(
                             children: [
                               Padding(
-                                padding: const EdgeInsets.only(left: 50),
+                                padding: EdgeInsets.only(left: 50.w),
                                 child: Text(
                                   "Food",
                                   style: GoogleFonts.poppins(
@@ -206,8 +211,8 @@ class _UserDetailsState extends State<UserDetails> {
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(15),
                           border: Border.all(width: 1, color: Colors.black)),
-                      height: 150,
-                      width: 180,
+                      height: 150.h,
+                      width: 180.w,
                     ),
                   )
                 ],
@@ -217,19 +222,19 @@ class _UserDetailsState extends State<UserDetails> {
           Row(
             children: [
               Padding(
-                padding: const EdgeInsets.only(left: 10, top: 70),
+                padding: EdgeInsets.only(left: 20.w, top: 20.h),
                 child: Container(
                   child: Column(
                     children: [
                       Row(
                         children: [
                           Padding(
-                            padding: const EdgeInsets.only(top: 40, left: 70),
+                            padding: EdgeInsets.only(top: 20.h, left: 70.w),
                             child: Text(
                               "10",
                               style: GoogleFonts.poppins(
                                   color: Colors.black,
-                                  fontSize: 40,
+                                  fontSize: 40.sp,
                                   fontWeight: FontWeight.w500),
                             ),
                           )
@@ -238,12 +243,12 @@ class _UserDetailsState extends State<UserDetails> {
                       Row(
                         children: [
                           Padding(
-                            padding: const EdgeInsets.only(left: 10),
+                            padding: EdgeInsets.only(left: 10.w),
                             child: Text(
                               "Notifications",
                               style: GoogleFonts.poppins(
                                   color: Colors.black,
-                                  fontSize: 25,
+                                  fontSize: 20.sp,
                                   fontWeight: FontWeight.w300),
                             ),
                           )
@@ -254,14 +259,14 @@ class _UserDetailsState extends State<UserDetails> {
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15),
                       border: Border.all(width: 1, color: Colors.black)),
-                  height: 150,
-                  width: 180,
+                  height: 150.h,
+                  width: 180.w,
                 ),
               ),
               Row(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(left: 10, top: 70),
+                    padding: EdgeInsets.only(left: 10.w, top: 20.h),
                     child: Container(
                       child: Column(
                         children: [
@@ -269,10 +274,10 @@ class _UserDetailsState extends State<UserDetails> {
                             children: [
                               Padding(
                                   padding:
-                                  const EdgeInsets.only(top: 40, left: 70),
+                                      EdgeInsets.only(top: 30.h, left: 70.w),
                                   child: Icon(
                                     Icons.logout,
-                                    size: 40,
+                                    size: 40.sp,
                                   ))
                             ],
                           ),
@@ -295,8 +300,8 @@ class _UserDetailsState extends State<UserDetails> {
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(15),
                           border: Border.all(width: 1, color: Colors.black)),
-                      height: 150,
-                      width: 180,
+                      height: 150.h,
+                      width: 180.w,
                     ),
                   )
                 ],

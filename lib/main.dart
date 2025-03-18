@@ -1,12 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:petwell_project/user/user_add_appoinment.dart';
+import 'package:petwell_project/user/user_add_appoinment_details.dart';
 import 'package:petwell_project/user/user_login.dart';
 import 'package:petwell_project/user/user_signup.dart';
 
+import 'Admin/Admin_doctor.dart';
 import 'Admin/admin_dashboard.dart';
+import 'Admin/admin_user.dart';
+import 'Admin/admin_view_doctor_details.dart';
+import 'Admin/admin_view_user_details.dart';
 import 'Doctor/Add_vaccination.dart';
+import 'Doctor/Doctor_login_page.dart';
+import 'Doctor/Doctor_signup_page.dart';
+import 'Doctor/Doctor_view_user_details_page.dart';
 import 'Doctor/Tabbar.dart';
+import 'Doctor/doctor_notification.dart';
 import 'Doctor/user_details.dart';
+import 'Doctor/view_appoinment.dart';
 import 'Splash_screen.dart';
 
 void main() {
@@ -23,7 +34,8 @@ class MyApp extends StatelessWidget {
         designSize: Size(412, 892),
         splitScreenMode: true,
         minTextAdapt: true,
-        builder: (context, child) => MaterialApp(debugShowCheckedModeBanner: false,
+        builder: (context, child) => MaterialApp(
+              debugShowCheckedModeBanner: false,
               title: 'Flutter Demo',
               theme: ThemeData(
                 // This is the theme of your application.
@@ -44,7 +56,7 @@ class MyApp extends StatelessWidget {
                 colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
                 useMaterial3: true,
               ),
-              home: DoctorTapbar(),
+              home: AdminViewUserDetails(),
             ));
   }
 }
