@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:petwell_project/user/user_homa_page.dart';
 import 'package:petwell_project/user/user_signup.dart';
@@ -28,14 +29,30 @@ class _LoginPageState extends State<LoginPage> {
                 Padding(
                   padding: EdgeInsets.only(top: 170.h, left: 40.w),
                   child: Container(
+                      height: 501.h,
+                      width: 339.w,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10.sp),
+                        color: Color(0xffF1DCDC),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(
+                                0.2.sp), // Shadow color with opacity
+                            spreadRadius: 0.r, // How much the shadow spreads
+                            blurRadius: 4.r, // Softness of the shadow
+                            offset:
+                                Offset(0, 4), // X and Y offset of the shadow
+                          ),
+                        ],
+                      ),
                       child: Column(
                         children: [
                           Row(
                             children: [
                               Padding(
-                                  padding: EdgeInsets.only(left: 110.w),
+                                  padding: EdgeInsets.only(left: 70.w),
                                   child: Text(
-                                    "Login",
+                                    " User Login",
                                     style: GoogleFonts.inter(fontSize: 36.sp),
                                   ))
                             ],
@@ -57,11 +74,14 @@ class _LoginPageState extends State<LoginPage> {
                                     hintStyle: GoogleFonts.hind(
                                         fontSize: 14.sp, color: Colors.grey),
                                     prefixIcon: Padding(
-                                        padding: EdgeInsets.all(12.0),
-                                        child: Icon(
-                                          Icons.alternate_email_outlined,
-                                          color: Colors.black,
-                                        )),
+                                      padding: EdgeInsets.all(12.0),
+                                      child: SvgPicture.asset(
+                                        'assets/entypo_email (1).svg', // ✅ Ensure this file exists
+                                        height: 20.h,
+                                        width: 20.w,
+                                        color: Colors.black,
+                                      ),
+                                    ),
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(12),
                                       borderSide:
@@ -95,11 +115,14 @@ class _LoginPageState extends State<LoginPage> {
                                     hintStyle: GoogleFonts.hind(
                                         fontSize: 14.sp, color: Colors.grey),
                                     prefixIcon: Padding(
-                                        padding: EdgeInsets.all(12.0),
-                                        child: Icon(
-                                          Icons.wifi_password_rounded,
-                                          color: Colors.black,
-                                        )),
+                                      padding: EdgeInsets.all(12.0),
+                                      child: SvgPicture.asset(
+                                        'assets/ic_twotone-wifi-password.svg', // ✅ Ensure this file exists
+                                        height: 20.h,
+                                        width: 20.w,
+                                        color: Colors.black,
+                                      ),
+                                    ),
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(12),
                                       borderSide:
@@ -122,9 +145,11 @@ class _LoginPageState extends State<LoginPage> {
                                 padding: EdgeInsets.only(left: 80.w, top: 50.h),
                                 child: InkWell(
                                   onTap: () {
-                                   Navigator.push(context, MaterialPageRoute(builder: (context) {
-                                     return NavigationBarMechanic();
-                                   },));
+                                    Navigator.push(context, MaterialPageRoute(
+                                      builder: (context) {
+                                        return NavigationBarMechanic();
+                                      },
+                                    ));
                                   },
                                   child: Container(
                                     child: Center(
@@ -150,22 +175,6 @@ class _LoginPageState extends State<LoginPage> {
                             "Forget password",
                             style: GoogleFonts.hind(),
                           )
-                        ],
-                      ),
-                      height: 501.h,
-                      width: 339.w,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10.sp),
-                        color: Color(0xffF1DCDC),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withOpacity(
-                                0.2.sp), // Shadow color with opacity
-                            spreadRadius: 0.r, // How much the shadow spreads
-                            blurRadius: 4.r, // Softness of the shadow
-                            offset:
-                                Offset(0, 4), // X and Y offset of the shadow
-                          ),
                         ],
                       )),
                 )

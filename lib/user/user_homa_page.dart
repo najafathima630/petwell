@@ -96,7 +96,7 @@ class _user_homepageState extends State<user_homepage> {
                     decoration: BoxDecoration(
                       image: DecorationImage(
                           image: AssetImage(
-                              "Assets/petgrooming-removebg-preview 1.png")),
+                              "assets/petgrooming-removebg-preview 1 (1).png")),
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(15),
                       boxShadow: [
@@ -105,7 +105,7 @@ class _user_homepageState extends State<user_homepage> {
                               .withOpacity(0.2), // Shadow color with opacity
                           spreadRadius: 0, // How much the shadow spreads
                           blurRadius: 4, // Softness of the shadow
-                          offset: Offset(0, 4), // X and Y offset of the shadow
+                          offset: Offset(4, 4), // X and Y offset of the shadow
                         ),
                       ],
                     ),
@@ -119,7 +119,7 @@ class _user_homepageState extends State<user_homepage> {
                     decoration: BoxDecoration(
                       image: DecorationImage(
                           image: AssetImage(
-                              "Assets/vaccination-removebg-preview 1.png")),
+                              "assets/vaccination-removebg-preview 1 (1).png")),
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(15),
                       boxShadow: [
@@ -128,7 +128,7 @@ class _user_homepageState extends State<user_homepage> {
                               .withOpacity(0.2), // Shadow color with opacity
                           spreadRadius: 0, // How much the shadow spreads
                           blurRadius: 4, // Softness of the shadow
-                          offset: Offset(0, 4), // X and Y offset of the shadow
+                          offset: Offset(4, 4), // X and Y offset of the shadow
                         ),
                       ],
                     ),
@@ -164,7 +164,7 @@ class _user_homepageState extends State<user_homepage> {
                     decoration: BoxDecoration(
                       image: DecorationImage(
                           image: AssetImage(
-                              "Assets/foodnew-removebg-preview 1.png")),
+                              "assets/foodnew-removebg-preview 1 (1).png")),
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(15),
                       boxShadow: [
@@ -173,7 +173,7 @@ class _user_homepageState extends State<user_homepage> {
                               .withOpacity(0.2), // Shadow color with opacity
                           spreadRadius: 0, // How much the shadow spreads
                           blurRadius: 4, // Softness of the shadow
-                          offset: Offset(0, 4), // X and Y offset of the shadow
+                          offset: Offset(4, 4), // X and Y offset of the shadow
                         ),
                       ],
                     ),
@@ -187,7 +187,7 @@ class _user_homepageState extends State<user_homepage> {
                     decoration: BoxDecoration(
                       image: DecorationImage(
                           image: AssetImage(
-                              "Assets/images-removebg-preview 1.png")),
+                              "assets/images-removebg-preview 1 (1).png")),
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(15),
                       boxShadow: [
@@ -196,7 +196,7 @@ class _user_homepageState extends State<user_homepage> {
                               .withOpacity(0.2), // Shadow color with opacity
                           spreadRadius: 0, // How much the shadow spreads
                           blurRadius: 4, // Softness of the shadow
-                          offset: Offset(0, 4), // X and Y offset of the shadow
+                          offset: Offset(4, 4), // X and Y offset of the shadow
                         ),
                       ],
                     ),

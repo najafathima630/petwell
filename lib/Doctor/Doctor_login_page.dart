@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:petwell_project/Doctor/Doctor_signup_page.dart';
 import 'package:petwell_project/Doctor/user_details.dart';
@@ -57,11 +58,14 @@ class _DoctorLoginPageState extends State<DoctorLoginPage> {
                                         hintStyle: GoogleFonts.hind(
                                             fontSize: 14.sp, color: Colors.grey),
                                         prefixIcon: Padding(
-                                            padding: EdgeInsets.all(12.0),
-                                            child: Icon(
-                                              Icons.alternate_email_outlined,
-                                              color: Colors.black,
-                                            )),
+                                          padding: EdgeInsets.all(12.0),
+                                          child:SvgPicture.asset(
+                                            'assets/entypo_email (1).svg', // ✅ Ensure this file exists
+                                            height: 20.h,
+                                            width: 20.w,
+                                            color: Colors.black,
+                                          ),
+                                        ),
                                         border: OutlineInputBorder(
                                           borderRadius: BorderRadius.circular(12),
                                           borderSide:
@@ -95,11 +99,14 @@ class _DoctorLoginPageState extends State<DoctorLoginPage> {
                                         hintStyle: GoogleFonts.hind(
                                             fontSize: 14.sp, color: Colors.grey),
                                         prefixIcon: Padding(
-                                            padding: EdgeInsets.all(12.0),
-                                            child: Icon(
-                                              Icons.wifi_password_rounded,
-                                              color: Colors.black,
-                                            )),
+                                          padding: EdgeInsets.all(12.0),
+                                          child: SvgPicture.asset(
+                                            'assets/ic_twotone-wifi-password.svg', // ✅ Ensure this file exists
+                                            height: 20.h,
+                                            width: 20.w,
+                                            color: Colors.black,
+                                          ),
+                                        ),
                                         border: OutlineInputBorder(
                                           borderRadius: BorderRadius.circular(12),
                                           borderSide:

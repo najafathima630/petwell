@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import '../user/Navigation_user.dart';
+import '../user/user_signup.dart';
 
 class AdminLogin extends StatefulWidget {
   const AdminLogin({super.key});
@@ -54,10 +58,13 @@ class _AdminLoginState extends State<AdminLogin> {
                                             fontSize: 14.sp, color: Colors.grey),
                                         prefixIcon: Padding(
                                             padding: EdgeInsets.all(12.0),
-                                            child: Icon(
-                                              Icons.alternate_email_outlined,
+                                            child:SvgPicture.asset(
+                                              'assets/entypo_email (1).svg', // ✅ Ensure this file exists
+                                              height: 20.h,
+                                              width: 20.w,
                                               color: Colors.black,
-                                            )),
+                                            ),
+                                            ),
                                         border: OutlineInputBorder(
                                           borderRadius: BorderRadius.circular(12),
                                           borderSide:
@@ -92,10 +99,12 @@ class _AdminLoginState extends State<AdminLogin> {
                                             fontSize: 14.sp, color: Colors.grey),
                                         prefixIcon: Padding(
                                             padding: EdgeInsets.all(12.0),
-                                            child: Icon(
-                                              Icons.wifi_password_rounded,
+                                            child: SvgPicture.asset(
+                                              'assets/ic_twotone-wifi-password.svg', // ✅ Ensure this file exists
+                                              height: 20.h,
+                                              width: 20.w,
                                               color: Colors.black,
-                                            )),
+                                            ),),
                                         border: OutlineInputBorder(
                                           borderRadius: BorderRadius.circular(12),
                                           borderSide:
@@ -118,9 +127,9 @@ class _AdminLoginState extends State<AdminLogin> {
                                 padding: EdgeInsets.only(left: 80.w, top: 50.h),
                                 child: InkWell(
                                   onTap: () {
-                                    // Navigator.push(context, MaterialPageRoute(builder: (context) {
-                                    //   return NavigationBarMechanic();
-                                    // },));
+                                    Navigator.push(context, MaterialPageRoute(builder: (context) {
+                                      return NavigationBarMechanic();
+                                    },));
                                   },
                                   child: Container(
                                     child: Center(
@@ -182,11 +191,11 @@ class _AdminLoginState extends State<AdminLogin> {
                 ),
                 TextButton(
                     onPressed: () {
-                      // Navigator.push(context, MaterialPageRoute(
-                      //   builder: (context) {
-                      //     return user_signup();
-                      //   },
-                      // ));
+                      Navigator.push(context, MaterialPageRoute(
+                        builder: (context) {
+                          return user_signup();
+                        },
+                      ));
                     },
                     child: Text(
                       "Sign up",

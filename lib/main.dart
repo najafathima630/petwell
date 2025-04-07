@@ -7,6 +7,8 @@ import 'package:petwell_project/user/user_signup.dart';
 
 import 'Admin/Admin_doctor.dart';
 import 'Admin/admin_dashboard.dart';
+import 'Admin/admin_login.dart';
+import 'Admin/admin_notification.dart';
 import 'Admin/admin_user.dart';
 import 'Admin/admin_view_doctor_details.dart';
 import 'Admin/admin_view_user_details.dart';
@@ -56,7 +58,7 @@ class MyApp extends StatelessWidget {
                 colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
                 useMaterial3: true,
               ),
-              home: AdminViewUserDetails(),
+              home: LoginPage(),
             ));
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:petwell_project/user/pet_profile_page.dart';
 import 'package:petwell_project/user/user_homa_page.dart';
 
@@ -34,22 +35,22 @@ class _NavigationBarMechanicState extends State<NavigationBarMechanic> {
     return Scaffold(
       body: _widgetOptions[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
-        items: const [
+        items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home_filled, color: Colors.black),
+            icon:  SvgPicture.asset('assets/Vector (4).svg', width: 24, height: 24),
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.notifications_active, color: Colors.black),
+            icon: SvgPicture.asset('assets/hugeicons_notification-bubble.svg', width: 24, height: 24),
             label: 'Notifications',
             backgroundColor: Colors.green
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.local_hospital, color: Colors.black),
+            icon: SvgPicture.asset('assets/healthicons_doctor-24px.svg', width: 24, height: 24),
             label: 'Doctor',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.pets, color: Colors.black),
+            icon:  SvgPicture.asset('assets/mdi_pets.svg', width: 24, height: 24),
             label: ' profile',
           ),
         ],

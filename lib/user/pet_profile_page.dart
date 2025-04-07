@@ -66,7 +66,7 @@ class _PetProfilePageState extends State<PetProfilePage> {
               SizedBox(height: 20),
               CircleAvatar(
                 radius: 50,
-                backgroundImage: AssetImage("assets/pet.jpg"),
+                backgroundImage: AssetImage("assets/images (3) 2.png"),
               ),
               SizedBox(height: 10),
               Text("Name",
