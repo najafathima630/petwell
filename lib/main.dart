@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:petwell_project/user/user_add_appoinment.dart';
 import 'package:petwell_project/user/user_add_appoinment_details.dart';
 import 'package:petwell_project/user/user_login.dart';
 import 'package:petwell_project/user/user_signup.dart';
 
 import 'Admin/Admin_doctor.dart';
+import 'Admin/admin_add_grooming.dart';
 import 'Admin/admin_dashboard.dart';
 import 'Admin/admin_login.dart';
 import 'Admin/admin_notification.dart';
@@ -58,7 +58,7 @@ class MyApp extends StatelessWidget {
                 colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
                 useMaterial3: true,
               ),
-              home: LoginPage(),
+              home: AdminAddGrooming(),
             ));
   }
 }
