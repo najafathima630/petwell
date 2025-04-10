@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "500904711523",
+    "project_id": "pet-well-3d5bb",
+    "storage_bucket": "pet-well-3d5bb.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:500904711523:android:d897c86d6fa300c698ef56",
+        "android_client_info": {
+          "package_name": "com.example.petwell_project"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDAm_6J5EvFLzyQ3yiMnBiemXvFWq3n1DQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

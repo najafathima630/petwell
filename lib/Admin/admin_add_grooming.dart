@@ -14,49 +14,185 @@ class _AdminAddGroomingState extends State<AdminAddGrooming> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Center(
-            child: Text(
-              "Service",
-              style: TextStyle(color: Colors.black),
-            ),
+      appBar: AppBar(
+        title: Center(
+          child: Text(
+            "Service",
+            style: TextStyle(color: Colors.black),
           ),
-          backgroundColor: Color(0xff5CB15A),
         ),
-        body: Column(children: [
-          SizedBox(
-            height: 20.h,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                width: 348.w,
-                height: 623.h,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Color(0xffE4DADA),
-                ),
-                child: Column(
-                  children: [
-                    Padding(
-                      padding:
-                          EdgeInsets.only(top: 20.h, left: 10.w, right: 10.r),
-                      child: TextFormField(
+        backgroundColor: Color(0xff5CB15A),
+      ),
+      body: ListView(children: [
+        Column(
+          children: [
+            SizedBox(
+              height: 20.h,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  width: 348.w,
+                  height: 790.h,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: Color(0xffE4DADA),
+                  ),
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding:
+                            EdgeInsets.only(top: 20.h, left: 10.w, right: 10.r),
+                        child: TextFormField(
                           decoration: InputDecoration(
+                              border: InputBorder.none,
                               prefixIconColor: Colors.white,
                               suffixIconColor: Colors.white,
                               fillColor: Colors.white,
-                              hintText: "content...",
+                              hintText: "Package name",
                               filled: true,
-                              enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10)))),
-                    )
-                  ],
-                ),
-              )
-            ],
-          ),
-        ]));
+                              disabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10.sp))),
+                        ),
+                      ),
+                      Padding(
+                        padding:
+                            EdgeInsets.only(top: 20.h, left: 10.w, right: 10.r),
+                        child: TextFormField(
+                          decoration: InputDecoration(
+                              border: InputBorder.none,
+                              prefixIconColor: Colors.white,
+                              suffixIconColor: Colors.white,
+                              fillColor: Colors.white,
+                              hintText: "Select name",
+                              filled: true,
+                              disabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(1))),
+                        ),
+                      ),
+                      Padding(
+                        padding:
+                            EdgeInsets.only(top: 20.h, left: 10.w, right: 10.r),
+                        child: TextFormField(
+                          decoration: InputDecoration(
+                              border: InputBorder.none,
+                              prefixIconColor: Colors.white,
+                              suffixIconColor: Colors.white,
+                              fillColor: Colors.white,
+                              hintText: "Select name",
+                              filled: true,
+                              disabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(1))),
+                        ),
+                      ),
+                      Padding(
+                        padding:
+                            EdgeInsets.only(top: 20.h, left: 10.w, right: 10.r),
+                        child: TextFormField(
+                          decoration: InputDecoration(
+                              border: InputBorder.none,
+                              prefixIconColor: Colors.white,
+                              suffixIconColor: Colors.white,
+                              fillColor: Colors.white,
+                              hintText: "service name",
+                              filled: true,
+                              disabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(1))),
+                        ),
+                      ),
+                      Padding(
+                        padding:
+                            EdgeInsets.only(top: 20.h, left: 10.w, right: 10.r),
+                        child: TextFormField(
+                          decoration: InputDecoration(
+                              border: InputBorder.none,
+                              prefixIconColor: Colors.white,
+                              suffixIconColor: Colors.white,
+                              fillColor: Colors.white,
+                              hintText: "Select name",
+                              filled: true,
+                              disabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(1))),
+                        ),
+                      ),
+                      Padding(
+                        padding:
+                            EdgeInsets.only(top: 20.h, left: 10.w, right: 10.r),
+                        child: TextFormField(
+                          decoration: InputDecoration(
+                              border: InputBorder.none,
+                              prefixIconColor: Colors.white,
+                              suffixIconColor: Colors.white,
+                              fillColor: Colors.white,
+                              hintText: "Select name",
+                              filled: true,
+                              disabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(1))),
+                        ),
+                      ),
+                      Padding(
+                        padding:
+                            EdgeInsets.only(top: 20.h, left: 10.w, right: 10.r),
+                        child: TextFormField(
+                          decoration: InputDecoration(
+                              border: InputBorder.none,
+                              prefixIconColor: Colors.white,
+                              suffixIconColor: Colors.white,
+                              fillColor: Colors.white,
+                              hintText: "Select name",
+                              filled: true,
+                              disabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(1))),
+                        ),
+                      ),
+                      Padding(
+                        padding:
+                            EdgeInsets.only(top: 20.h, left: 10.w, right: 10.r),
+                        child: TextFormField(
+                          decoration: InputDecoration(
+                              border: InputBorder.none,
+                              prefixIconColor: Colors.white,
+                              suffixIconColor: Colors.white,
+                              fillColor: Colors.white,
+                              hintText: "Select name",
+                              filled: true,
+                              disabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(1))),
+                        ),
+                      ),
+                      Padding(
+                        padding:
+                            EdgeInsets.only(top: 20.h, left: 10.w, right: 10.r),
+                        child: TextFormField(
+                          decoration: InputDecoration(
+                              border: InputBorder.none,
+                              prefixIconColor: Colors.white,
+                              suffixIconColor: Colors.white,
+                              fillColor: Colors.white,
+                              hintText: "Select name",
+                              filled: true,
+                              disabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(1))),
+                        ),
+                      ),
+                      Row(
+                        children: [
+                          Container(
+                            width: 50.w,
+                            height: 100.h,
+                            decoration: BoxDecoration(color: Colors.green),
+                          )
+                        ],
+                      )
+                    ],
+                  ),
+                )
+              ],
+            ),
+          ],
+        ),
+      ]),
+    );
   }
 }
