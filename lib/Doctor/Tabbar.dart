@@ -5,7 +5,7 @@ import 'package:petwell_project/Doctor/Doctor_login_page.dart';
 import 'package:petwell_project/Doctor/doctor_notification.dart';
 import 'package:petwell_project/Doctor/user_details.dart';
 
-import 'Add_vaccination.dart';
+import '../user/Add_vaccination.dart';
 
 class DoctorTapbar extends StatefulWidget {
   const DoctorTapbar({super.key});

@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:petwell_project/Doctor/Tabbar.dart';
 
-import 'Add_vaccination.dart';
+import '../user/Add_vaccination.dart';
 
 class ViewAppoinment extends StatefulWidget {
   const ViewAppoinment({super.key});

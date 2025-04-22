@@ -1,6 +1,9 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:petwell_project/splash_screens/logo_screen.dart';
 import 'package:petwell_project/user/user_add_appoinment_details.dart';
+import 'package:petwell_project/user/user_homa_page.dart';
 import 'package:petwell_project/user/user_login.dart';
 import 'package:petwell_project/user/user_signup.dart';
 
@@ -12,7 +15,7 @@ import 'Admin/admin_notification.dart';
 import 'Admin/admin_user.dart';
 import 'Admin/admin_view_doctor_details.dart';
 import 'Admin/admin_view_user_details.dart';
-import 'Doctor/Add_vaccination.dart';
+import 'user/Add_vaccination.dart';
 import 'Doctor/Doctor_login_page.dart';
 import 'Doctor/Doctor_signup_page.dart';
 import 'Doctor/Doctor_view_user_details_page.dart';
@@ -21,8 +24,13 @@ import 'Doctor/doctor_notification.dart';
 import 'Doctor/user_details.dart';
 import 'Doctor/view_appoinment.dart';
 import 'Splash_screen.dart';
+import 'firebase_options.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
@@ -58,7 +66,7 @@ class MyApp extends StatelessWidget {
                 colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
                 useMaterial3: true,
               ),
-              home: LoginPage(),
+              home: LogoScreen(),
             ));
   }
 }

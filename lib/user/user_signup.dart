@@ -4,21 +4,28 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:petwell_project/user/user_login.dart';
 
+import '../firebase_options.dart';
 import '../main.dart';
+
+
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(); // 🔥 initialize Firebase here
-  runApp(MyApp()); // or whatever your root widget is
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform, // only needed if using Firebase CLI setup
+  );
+  runApp(MyApp());
 }
-
 class user_signup extends StatefulWidget {
   const user_signup({super.key});
+
 
   @override
   State<user_signup> createState() => _user_signupState();
 }
 
 class _user_signupState extends State<user_signup> {
+
   final form_key = GlobalKey<FormState>();
   TextEditingController namectrl = TextEditingController();
   TextEditingController numberctrl = TextEditingController();
@@ -26,6 +33,10 @@ class _user_signupState extends State<user_signup> {
   TextEditingController passwordctrl = TextEditingController();
   TextEditingController placectrl = TextEditingController();
   Future<void> users() async {
+    if (!form_key.currentState!.validate()) {
+      return;
+    }
+
     FirebaseFirestore.instance.collection("user_signup").add({
       "name": namectrl.text,
       "number": numberctrl.text,
@@ -36,6 +47,7 @@ class _user_signupState extends State<user_signup> {
       "Profile_path":
           "https://images.pexels.com/photos/213780/pexels-photo-213780.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
     });
+
     print("Success");
     Navigator.push(context, MaterialPageRoute(
       builder: (context) {
@@ -43,6 +55,7 @@ class _user_signupState extends State<user_signup> {
       },
     ));
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +72,8 @@ class _user_signupState extends State<user_signup> {
                 },
                 icon: Icon(Icons.arrow_back_ios_new))),
         backgroundColor: Color(0xffFFFFFF),
-        body: Form(key: form_key,
+        body: Form(
+          key: form_key,
           child: ListView(children: [
             Column(
               children: [
@@ -94,7 +108,8 @@ class _user_signupState extends State<user_signup> {
                                 Text(
                                   "Name",
                                   style: GoogleFonts.rubik(
-                                      fontSize: 14, fontWeight: FontWeight.w500),
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w500),
                                 )
                               ],
                             ),
@@ -144,7 +159,8 @@ class _user_signupState extends State<user_signup> {
                                 Text(
                                   "Email",
                                   style: GoogleFonts.rubik(
-                                      fontSize: 14, fontWeight: FontWeight.w500),
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w500),
                                 )
                               ],
                             ),
@@ -194,7 +210,8 @@ class _user_signupState extends State<user_signup> {
                                 Text(
                                   "Number",
                                   style: GoogleFonts.rubik(
-                                      fontSize: 14, fontWeight: FontWeight.w500),
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w500),
                                 )
                               ],
                             ),
@@ -244,7 +261,8 @@ class _user_signupState extends State<user_signup> {
                                 Text(
                                   "Location",
                                   style: GoogleFonts.rubik(
-                                      fontSize: 14, fontWeight: FontWeight.w500),
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w500),
                                 )
                               ],
                             ),
@@ -294,7 +312,8 @@ class _user_signupState extends State<user_signup> {
                                 Text(
                                   "Password",
                                   style: GoogleFonts.rubik(
-                                      fontSize: 14, fontWeight: FontWeight.w500),
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w500),
                                 )
                               ],
                             ),
@@ -340,11 +359,12 @@ class _user_signupState extends State<user_signup> {
                               children: [
                                 Padding(
                                   padding: EdgeInsets.only(left: 80, top: 10),
-                                  child: GestureDetector(onTap: () {
-                                    if (form_key.currentState!.validate()) {
-                                      users();
-                                    }
-                                  },
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      if (form_key.currentState!.validate()) {
+                                        users();
+                                      }
+                                    },
                                     child: Container(
                                       child: Center(
                                           child: Text(
@@ -371,8 +391,8 @@ class _user_signupState extends State<user_signup> {
                           color: Color(0xffF0E4E4),
                           boxShadow: [
                             BoxShadow(
-                              color: Colors.black
-                                  .withOpacity(0.2), // Shadow color with opacity
+                              color: Colors.black.withOpacity(
+                                  0.2), // Shadow color with opacity
                               spreadRadius: 0, // How much the shadow spreads
                               blurRadius: 4, // Softness of the shadow
                               offset:
@@ -391,8 +411,8 @@ class _user_signupState extends State<user_signup> {
                       padding: EdgeInsets.only(left: 70),
                       child: Text(
                         "Already have an account? ",
-                        style:
-                            GoogleFonts.rubik(fontSize: 16, color: Colors.black),
+                        style: GoogleFonts.rubik(
+                            fontSize: 16, color: Colors.black),
                       ),
                     ),
                     TextButton(

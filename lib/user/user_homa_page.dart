@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:petwell_project/user/user_add_appoinment_details.dart';
+import 'package:petwell_project/user/user_profile.dart';
 
 class user_homepage extends StatefulWidget {
   const user_homepage({super.key});
@@ -13,8 +15,15 @@ class _user_homepageState extends State<user_homepage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Icon(Icons.person),
-      ),
+          leading: IconButton(
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(
+                  builder: (context) {
+                    return User_profile();
+                  },
+                ));
+              },
+              icon: Icon(Icons.person))),
       body: ListView(children: [
         Column(
           children: [
@@ -181,24 +190,34 @@ class _user_homepageState extends State<user_homepage> {
                 ),
                 Padding(
                   padding: EdgeInsets.only(left: 20, top: 30),
-                  child: Container(
-                    height: 132,
-                    width: 160,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage(
-                              "assets/images-removebg-preview 1 (1).png")),
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(15),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black
-                              .withOpacity(0.2), // Shadow color with opacity
-                          spreadRadius: 0, // How much the shadow spreads
-                          blurRadius: 4, // Softness of the shadow
-                          offset: Offset(4, 4), // X and Y offset of the shadow
-                        ),
-                      ],
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.push(context, MaterialPageRoute(
+                        builder: (context) {
+                          return User_add_appoinment_details();
+                        },
+                      ));
+                    },
+                    child: Container(
+                      height: 132,
+                      width: 160,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: AssetImage(
+                                "assets/images-removebg-preview 1 (1).png")),
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(15),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black
+                                .withOpacity(0.2), // Shadow color with opacity
+                            spreadRadius: 0, // How much the shadow spreads
+                            blurRadius: 4, // Softness of the shadow
+                            offset:
+                                Offset(4, 4), // X and Y offset of the shadow
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 )
