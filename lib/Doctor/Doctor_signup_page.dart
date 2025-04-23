@@ -27,12 +27,12 @@ class _DoctorSignupPageState extends State<DoctorSignupPage> {
     }
 
     FirebaseFirestore.instance.collection("Doctor_signup").add({
-      "name": namectrl.text,
-      "number": numberctrl.text,
-      "email": emailctrl.text,
-      "password": passwordctrl.text,
-      "experience": experiencectrl.text,
-      "qualification":Qualificationctrl.text,
+      "name": namectrl.text.trim(),
+      "number": numberctrl.text.trim(),
+      "email": emailctrl.text.trim(),
+      "password": passwordctrl.text.trim(),
+      "experience": experiencectrl.text.trim(),
+      "qualification":Qualificationctrl.text.trim(),
       "Status": 0,
       "Profile_path":
       "https://images.pexels.com/photos/213780/pexels-photo-213780.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
@@ -104,7 +104,7 @@ class _DoctorSignupPageState extends State<DoctorSignupPage> {
                             Center(
                                 child: Padding(
                               padding: EdgeInsets.only(left: 10.w, right: 10.r),
-                              child: TextFormField(
+                              child: TextFormField(controller:namectrl ,
                                   validator: (value) {
                                     if (value!.isEmpty) {
                                       return "Empty name";
@@ -151,7 +151,7 @@ class _DoctorSignupPageState extends State<DoctorSignupPage> {
                                 child: Padding(
                               padding: EdgeInsets.only(
                                   top: 10.h, left: 10.w, right: 10.r),
-                              child: TextFormField(
+                              child: TextFormField(controller: numberctrl,
                                   validator: (value) {
                                     if (value!.isEmpty) {
                                       return "Empty number";
@@ -198,15 +198,15 @@ class _DoctorSignupPageState extends State<DoctorSignupPage> {
                                 child: Padding(
                               padding: EdgeInsets.only(
                                   top: 10.h, left: 10.w, right: 10.r),
-                              child: TextFormField(
+                              child: TextFormField(controller: emailctrl,
                                   validator: (value) {
                                     if (value!.isEmpty) {
-                                      return "Empty experience";
+                                      return "Empty email";
                                     }
                                     return null;
                                   },
                                   decoration: InputDecoration(
-                                      hintText: 'Enter your experience',
+                                      hintText: 'Enter your email',
                                       hintStyle: GoogleFonts.hind(
                                           fontSize: 14.sp, color: Colors.grey),
                                       border: OutlineInputBorder(
@@ -245,7 +245,7 @@ class _DoctorSignupPageState extends State<DoctorSignupPage> {
                                 child: Padding(
                               padding: EdgeInsets.only(
                                   top: 10.h, left: 10.w, right: 10.r),
-                              child: TextFormField(
+                              child: TextFormField(controller: Qualificationctrl,
                                   validator: (value) {
                                     if (value!.isEmpty) {
                                       return "Empty qualification";
@@ -292,7 +292,7 @@ class _DoctorSignupPageState extends State<DoctorSignupPage> {
                                 child: Padding(
                               padding: EdgeInsets.only(
                                   top: 10.h, left: 10.w, right: 10.r),
-                              child: TextFormField(
+                              child: TextFormField(controller: passwordctrl,
                                   validator: (value) {
                                     if (value!.isEmpty) {
                                       return "Empty password";
@@ -338,7 +338,7 @@ class _DoctorSignupPageState extends State<DoctorSignupPage> {
                                 child: Padding(
                                   padding: EdgeInsets.only(
                                       top: 10.h, left: 10.w, right: 10.r),
-                                  child: TextFormField(
+                                  child: TextFormField(controller: experiencectrl,
                                       validator: (value) {
                                         if (value!.isEmpty) {
                                           return "Empty experience";

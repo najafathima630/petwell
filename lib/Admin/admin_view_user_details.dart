@@ -1,12 +1,14 @@
 import 'dart:ui';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:petwell_project/Admin/admin_user.dart';
 
 class AdminViewUserDetails extends StatefulWidget {
-  const AdminViewUserDetails({super.key});
+  const AdminViewUserDetails(required, {super.key, reguirde,});
 
   @override
   State<AdminViewUserDetails> createState() => _AdminViewUserDetailsState();
@@ -21,29 +23,35 @@ class _AdminViewUserDetailsState extends State<AdminViewUserDetails> {
           title: Padding(
             padding: EdgeInsets.only(left: 150.w),
             child: Text(
-              "Doctors",
+              "USER",
               style: GoogleFonts.poppins(
                   fontWeight: FontWeight.w500, fontSize: 20.sp),
             ),
           ),
+          leading: IconButton(
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(
+                  builder: (context) {
+                    return AdminUser();
+                  },
+                ));
+              },
+              icon: Icon(Icons.arrow_back_ios_new)),
         ),
-        body: Column(children: [
-          Row(children: [
-            Padding(
-                padding: EdgeInsets.only(left: 30.w, top: 30.h),
-                child: Card(
-                  child: Container(
-                      child: ListView(children: [
-                        Column(
+        body: ListView(children: [
+          Column(children: [
+            Row(children: [
+              Padding(
+                  padding: EdgeInsets.only(left: 20.w, top: 10.h),
+                  child: Card(
+                    child: Container(
+                        child: Column(
                           children: [
-                            Row(
-                              children: [Icon(Icons.arrow_back_ios_new_sharp)],
-                            ),
                             Row(
                               children: [
                                 Padding(
                                   padding:
-                                  EdgeInsets.only(top: 30.h, left: 130.w),
+                                      EdgeInsets.only(top: 30.h, left: 130.w),
                                   child: CircleAvatar(
                                     radius: 40.r,
                                   ),
@@ -53,7 +61,8 @@ class _AdminViewUserDetailsState extends State<AdminViewUserDetails> {
                             Row(
                               children: [
                                 Padding(
-                                  padding: EdgeInsets.only(left: 130.w),
+                                  padding:
+                                      EdgeInsets.only(left: 130.w, top: 10.h),
                                   child: Text(
                                     "User name",
                                     style: GoogleFonts.poppins(
@@ -66,7 +75,7 @@ class _AdminViewUserDetailsState extends State<AdminViewUserDetails> {
                             Row(
                               children: [
                                 Padding(
-                                  padding:  EdgeInsets.only(left: 140.w),
+                                  padding: EdgeInsets.only(left: 140.w),
                                   child: Text("Location"),
                                 )
                               ],
@@ -75,36 +84,28 @@ class _AdminViewUserDetailsState extends State<AdminViewUserDetails> {
                               children: [
                                 Padding(
                                   padding:
-                                  EdgeInsets.only(left: 30.w
-                                      , top: 50.h),
-                                  child: Text("User name"),
+                                      EdgeInsets.only(left: 30.w, top: 30.h),
+                                  child: Text(
+                                    "User name",
+                                    style: GoogleFonts.poppins(fontSize: 16.sp),
+                                  ),
                                 )
                               ],
                             ),
                             Padding(
                               padding: EdgeInsets.only(left: 30.w, right: 40.r),
                               child: Container(
-                                // width: 300.w,
-                                child: TextFormField(
-                                  decoration: InputDecoration(
-                                    border: OutlineInputBorder(
-                                        borderSide:
-                                        BorderSide(color: Colors.white),
-                                        borderRadius:
-                                        BorderRadius.circular(10.r)),
-                                    prefixIconColor: Colors.white,
-                                    suffixIconColor: Colors.pink,
-                                    hintText: "name",
-                                    fillColor: Colors.white,
-                                    filled: true,
-                                  ),
-                                ),
+                                width: 450.w,
+                                height: 50.h,
+                                decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(12.sp)),
                               ),
                             ),
                             Row(
                               children: [
                                 Padding(
-                                  padding:  EdgeInsets.only(left: 30.w),
+                                  padding: EdgeInsets.only(left: 30.w),
                                   child: Text(
                                     "Phone number",
                                     style: GoogleFonts.poppins(
@@ -115,29 +116,19 @@ class _AdminViewUserDetailsState extends State<AdminViewUserDetails> {
                               ],
                             ),
                             Padding(
-                              padding: EdgeInsets.only(left: 30.w, right: 40.w),
+                              padding: EdgeInsets.only(left: 30.w, right: 40.r),
                               child: Container(
-                                // width: 300.w,
-                                child: TextFormField(
-                                  decoration: InputDecoration(
-                                    border: OutlineInputBorder(
-                                        borderSide:
-                                        BorderSide(color: Colors.white),
-                                        borderRadius:
-                                        BorderRadius.circular(10.r)),
-                                    prefixIconColor: Colors.white,
-                                    suffixIconColor: Colors.pink,
-                                    hintText: "0000000000",
-                                    fillColor: Colors.white,
-                                    filled: true,
-                                  ),
-                                ),
+                                width: 450.w,
+                                height: 50.h,
+                                decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(12.sp)),
                               ),
                             ),
                             Row(
                               children: [
                                 Padding(
-                                  padding:  EdgeInsets.only(left: 30.w),
+                                  padding: EdgeInsets.only(left: 30.w),
                                   child: Text(
                                     "Eamil",
                                     style: GoogleFonts.poppins(
@@ -148,29 +139,19 @@ class _AdminViewUserDetailsState extends State<AdminViewUserDetails> {
                               ],
                             ),
                             Padding(
-                              padding: EdgeInsets.only(left: 30.w, right: 40.w),
+                              padding: EdgeInsets.only(left: 30.w, right: 40.r),
                               child: Container(
-                                // width: 300.w,
-                                child: TextFormField(
-                                  decoration: InputDecoration(
-                                    border: OutlineInputBorder(
-                                        borderSide:
-                                        BorderSide(color: Colors.white),
-                                        borderRadius:
-                                        BorderRadius.circular(10.r)),
-                                    prefixIconColor: Colors.white,
-                                    suffixIconColor: Colors.pink,
-                                    hintText: "mail",
-                                    fillColor: Colors.white,
-                                    filled: true,
-                                  ),
-                                ),
+                                width: 450.w,
+                                height: 50.h,
+                                decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(12.sp)),
                               ),
                             ),
                             Row(
                               children: [
                                 Padding(
-                                  padding:  EdgeInsets.only(left: 30.w),
+                                  padding: EdgeInsets.only(left: 30.w),
                                   child: Text(
                                     "Place",
                                     style: GoogleFonts.poppins(
@@ -181,29 +162,19 @@ class _AdminViewUserDetailsState extends State<AdminViewUserDetails> {
                               ],
                             ),
                             Padding(
-                              padding: EdgeInsets.only(left: 30.w, right: 40.w),
+                              padding: EdgeInsets.only(left: 30.w, right: 40.r),
                               child: Container(
-                                // width: 300.w,
-                                child: TextFormField(
-                                  decoration: InputDecoration(
-                                    border: OutlineInputBorder(
-                                        borderSide:
-                                        BorderSide(color: Colors.white),
-                                        borderRadius:
-                                        BorderRadius.circular(10.r)),
-                                    prefixIconColor: Colors.white,
-                                    suffixIconColor: Colors.pink,
-                                    hintText: "place",
-                                    fillColor: Colors.white,
-                                    filled: true,
-                                  ),
-                                ),
+                                width: 450.w,
+                                height: 50.h,
+                                decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(12.sp)),
                               ),
                             ),
                             Row(
                               children: [
                                 Padding(
-                                  padding:  EdgeInsets.only(left: 30.w),
+                                  padding: EdgeInsets.only(left: 30.w),
                                   child: Text(
                                     "password",
                                     style: GoogleFonts.poppins(
@@ -214,93 +185,80 @@ class _AdminViewUserDetailsState extends State<AdminViewUserDetails> {
                               ],
                             ),
                             Padding(
-                              padding: EdgeInsets.only(left: 30.w, right: 40.w),
+                              padding: EdgeInsets.only(left: 30.w, right: 40.r),
                               child: Container(
-                                // width: 300.w,
-                                child: TextFormField(
-                                  decoration: InputDecoration(
-                                    border: OutlineInputBorder(
-                                        borderSide:
-                                        BorderSide(color: Colors.white),
-                                        borderRadius:
-                                        BorderRadius.circular(10.r)),
-                                    prefixIconColor: Colors.white,
-                                    suffixIconColor: Colors.pink,
-                                    hintText: "password",
-                                    fillColor: Colors.white,
-                                    filled: true,
-                                  ),
-                                ),
+                                width: 450.w,
+                                height: 50.h,
+                                decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(12.sp)),
                               ),
                             ),
-                            Row(
-                              children: [
-                                Padding(
-                                  padding:
-                                  EdgeInsets.only(left: 30.w, top: 30.h),
-                                  child: Container(
-                                    child: Padding(
-                                      padding:  EdgeInsets.only(
-                                          top: 5.h, left: 20.w),
-                                      child: Text(
-                                        "Accept",
-                                        style: GoogleFonts.poppins(
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 20.sp),
-                                      ),
+                            Row(children: [
+                              Padding(
+                                padding:
+                                    EdgeInsets.only(left: 20.w, top: 100.h),
+                                child: Container(
+                                  child: Center(
+                                    child: Text(
+                                      "Accept",
+                                      style: GoogleFonts.poppins(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: 18.sp),
                                     ),
-                                    height: 40.h,
-                                    width: 130.w,
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(15.r),
-                                        color: Colors.lightGreen),
                                   ),
+                                  width: 142.w,
+                                  height: 50.h,
+                                  decoration: BoxDecoration(
+                                      color: Colors.green,
+                                      borderRadius: BorderRadius.circular(5.r)),
                                 ),
+                              ),
+                              Row(children: [
                                 Padding(
                                   padding:
-                                  EdgeInsets.only(left: 10.w, top: 30.h),
+                                      EdgeInsets.only(left: 40.w, top: 100.h),
                                   child: Container(
-                                    child: Padding(
-                                      padding:  EdgeInsets.only(
-                                          top: 5.h, left: 20.w),
+                                    child: Center(
                                       child: Text(
                                         "Reject",
                                         style: GoogleFonts.poppins(
                                             color: Colors.white,
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 20.sp),
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: 18.sp),
                                       ),
                                     ),
-                                    height: 40.h,
-                                    width: 130.w,
+                                    width: 142.w,
+                                    height: 50.h,
                                     decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(15.r),
-                                        color: Colors.red),
+                                        color: Colors.red,
+                                        borderRadius:
+                                            BorderRadius.circular(5.r)),
                                   ),
-                                )
-                              ],
-                            )
+                                ),
+                              ]),
+                            ]),
                           ],
                         ),
-                      ]),
-                      height: 700.h,
-                      width: 325.w,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10.r),
-                        color: Color(0xffF0E4E4),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black
-                                .withOpacity(0.2), // Shadow color with opacity
-                            spreadRadius: 0, // How much the shadow spreads
-                            blurRadius: 4, // Softness of the shadow
-                            offset:
-                            Offset(0, 4), // X and Y offset of the shadow
-                          ),
-                        ],
-                      )),
-                )),
+                        height: 800.h,
+                        width: 355.w,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10.r),
+                          color: Color(0xffF0E4E4),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(
+                                  0.2), // Shadow color with opacity
+                              spreadRadius: 0, // How much the shadow spreads
+                              blurRadius: 4, // Softness of the shadow
+                              offset:
+                                  Offset(0, 4), // X and Y offset of the shadow
+                            ),
+                          ],
+                        )),
+                  )),
+            ]),
           ]),
         ]));
   }

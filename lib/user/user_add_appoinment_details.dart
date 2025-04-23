@@ -73,11 +73,11 @@ class _User_add_appoinment_detailsState
     FirebaseFirestore.instance.collection("Appoinment_details").add({
       "name": namectrl.text,
       "number": numberctrl.text,
-      "time": _selectedTime,
+      "time": _selectedTime.format(context),
       "pet_type": pettypectrl.text,
       "date": selectedDate,
       "owner_name": ownerctrl.text,
-      "gender": genderctrl.text = selectedGender ?? "Male",
+      "gender": selectedGender ?? "Male",
       "Status": 0,
       "Profile_path":
           "https://images.pexels.com/photos/213780/pexels-photo-213780.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
@@ -255,7 +255,10 @@ class _User_add_appoinment_detailsState
                                       Icons.lock_clock) // Padding inside field
                                   ),
                               onTap: () async {
-                                await _pickTime(); // Open time picker on tap
+                                await _pickTime();
+                                timectrl.text = _selectedTime
+                                    .format(context); // <-- Add this
+                                // Open time picker on tap
                               },
                             ),
                           ),
@@ -410,29 +413,23 @@ class _User_add_appoinment_detailsState
                               EdgeInsets.only(left: 20, right: 20, top: 10),
                           child: Container(
                             decoration: BoxDecoration(
-                              color:
-                                  Color(0xFFFFF4EC), // Light peach background
-                              borderRadius:
-                                  BorderRadius.circular(12), // Rounded corners
+                              color: Color(0xFFFFF4EC),
+                              borderRadius: BorderRadius.circular(12),
                             ),
-                            child: TextFormField(
-                              controller: namectrl,
-                              validator: (value) {
-                                if (value!.isEmpty) {
-                                  return "Empty password";
-                                }
-                                return null;
-                              },
+                            child: IntlPhoneField(
+                              controller: numberctrl,
+                              initialCountryCode:
+                                  'IN', // or your preferred country
                               decoration: InputDecoration(
-                                prefixIcon: IntlPhoneField(),
-                                hintStyle: TextStyle(
-                                    color: Colors.grey), // Hint text color
-                                border:
-                                    InputBorder.none, // Remove default border
+                                hintText: "Phone Number",
+                                hintStyle: TextStyle(color: Colors.grey),
+                                border: InputBorder.none,
                                 contentPadding: EdgeInsets.symmetric(
-                                    horizontal: 16,
-                                    vertical: 12), // Padding inside field
+                                    horizontal: 16, vertical: 12),
                               ),
+                              onChanged: (phone) {
+                                print(phone.completeNumber);
+                              },
                             ),
                           ),
                         ),
