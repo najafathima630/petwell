@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -19,12 +20,12 @@ class DoctorLoginPage extends StatefulWidget {
 class _DoctorLoginPageState extends State<DoctorLoginPage> {
   final form_key = GlobalKey<FormState>();
   var passowrdctrl = TextEditingController();
-  var Emailctrl = TextEditingController();
+  var emailctrl = TextEditingController();
   String id = "";
   Future<void> Doctor_Login() async {
     final user = await FirebaseFirestore.instance
         .collection("Doctor_signup")
-        .where("email", isEqualTo: Emailctrl.text)
+        .where("email", isEqualTo: emailctrl.text)
         .where("password", isEqualTo: passowrdctrl.text)
         .get();
 
@@ -48,6 +49,52 @@ class _DoctorLoginPageState extends State<DoctorLoginPage> {
       );
     }
   }
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  void registerDoctor() async {
+    if (form_key.currentState!.validate()) {
+      try {
+        UserCredential userCredential =
+        await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: emailctrl.text,
+          password: passowrdctrl.text,
+        );
+
+        if (userCredential.user != null) {
+          // ✅ Get user's Firestore document
+          final snapshot = await FirebaseFirestore.instance
+              .collection("Doctor_signup")
+              .where("email", isEqualTo: emailctrl.text)
+              .get();
+
+          if (snapshot.docs.isNotEmpty) {
+            String Doctor_id = snapshot.docs[0].id;
+            SharedPreferences prefs = await SharedPreferences.getInstance();
+            await prefs.setString("doctor_id",Doctor_id ); // ✅ Save Firestore ID
+
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => DoctorTapbar()),
+            );
+          } else {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text("User record not found in Firestore")),
+            );
+          }
+        }
+      } catch (e) {
+        print("Login Error: $e");
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text("Error: $e"),
+            backgroundColor: Colors.black,
+          ),
+        );
+      }
+    }
+  }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -79,10 +126,10 @@ class _DoctorLoginPageState extends State<DoctorLoginPage> {
                               padding: EdgeInsets.only(
                                   top: 70.h, left: 10.w, right: 10.r),
                               child: TextFormField(
-                                  controller: Emailctrl,
+                                  controller: emailctrl,
                                   validator: (value) {
                                     if (value!.isEmpty) {
-                                      return "Empty password";
+                                      return "Empty email";
                                     }
                                     return null;
                                   },
@@ -164,7 +211,7 @@ class _DoctorLoginPageState extends State<DoctorLoginPage> {
                                   child: InkWell(
                                     onTap: () {
                                       if (form_key.currentState!.validate())
-                                        Doctor_Login();
+                                        registerDoctor();
                                     },
                                     child: Container(
                                       child: Center(

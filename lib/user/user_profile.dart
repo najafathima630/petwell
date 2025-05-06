@@ -54,10 +54,12 @@ class _User_profileState extends State<User_profile> {
               if (snapshot.hasError) {
                 return Center(child: Text("user found"));
               }
-              if (!snapshot.hasData || snapshot.data == null) {
-                return Center(child: Text("no user data found"));
+              final data = snapshot.data!.data();
+              if (data == null) {
+                return Center(child: Text("User document is empty."));
               }
-              final user = snapshot.data!.data() as Map<String, dynamic>;
+
+              final user = data; // safe now
               return Column(
                 children: [
                   Row(
@@ -78,10 +80,10 @@ class _User_profileState extends State<User_profile> {
                   Row(
                     children: [
                       SizedBox(
-                        width: 130,
+                        width: 160,
                       ),
                       Text(
-                        user["name"]??"no data found",
+                        user["name"] ?? "no data found",
                         style: GoogleFonts.hind(fontSize: 16),
                       )
                     ],
@@ -94,7 +96,7 @@ class _User_profileState extends State<User_profile> {
                           child: Padding(
                             padding: EdgeInsets.only(left: 20, top: 20),
                             child: Text(
-                              user["name"]??"no data found",
+                              user["name"] ?? "no data found",
                               style: GoogleFonts.hind(
                                   color: Colors.white, fontSize: 12),
                             ),
@@ -116,7 +118,7 @@ class _User_profileState extends State<User_profile> {
                           child: Padding(
                             padding: EdgeInsets.only(left: 20, top: 20),
                             child: Text(
-                              user["number"]??"no data found",
+                              user["number"] ?? "no data found",
                               style: GoogleFonts.hind(
                                   color: Colors.white, fontSize: 12),
                             ),
@@ -138,7 +140,7 @@ class _User_profileState extends State<User_profile> {
                           child: Padding(
                             padding: EdgeInsets.only(left: 20, top: 20),
                             child: Text(
-                              user["email"]??"no data found",
+                              user["email"] ?? "no data found",
                               style: GoogleFonts.hind(
                                   color: Colors.white, fontSize: 12),
                             ),
@@ -160,7 +162,7 @@ class _User_profileState extends State<User_profile> {
                           child: Padding(
                             padding: EdgeInsets.only(left: 20, top: 20),
                             child: Text(
-                              user["place"]??"no data found",
+                              user["place"] ?? "no data found",
                               style: GoogleFonts.hind(
                                   color: Colors.white, fontSize: 12),
                             ),

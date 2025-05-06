@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:petwell_project/user/user_homa_page.dart';
 import 'package:petwell_project/user/user_login.dart';
 
 import '../firebase_options.dart';
@@ -25,36 +27,52 @@ class user_signup extends StatefulWidget {
 }
 
 class _user_signupState extends State<user_signup> {
+final FirebaseAuth _auth = FirebaseAuth.instance;
+final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  final form_key = GlobalKey<FormState>();
+
+
+void registerUser() async {
+  if (form_key.currentState!.validate()) {
+    try {
+      UserCredential userCredential =
+      await _auth.createUserWithEmailAndPassword(
+        email: emailctrl.text,
+        password: passwordctrl.text,
+      );
+
+      await _firestore
+          .collection('user_signup')
+          .doc(userCredential.user!.uid)
+          .set({
+        "name": namectrl.text,
+        "number": numberctrl.text,
+        "email": emailctrl.text,
+        "password": passwordctrl.text,
+        "place": placectrl.text,
+        "Status": 0,
+        "Profile_path":
+        "https://images.pexels.com/photos/213780/pexels-photo-213780.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+      });
+
+      Navigator.push(context, MaterialPageRoute(
+        builder: (context) {
+          return LoginPage();
+        },
+      ));
+    } catch (e) {
+      print("Registration Error: $e");
+    }
+  }
+}
+
+
+final form_key = GlobalKey<FormState>();
   TextEditingController namectrl = TextEditingController();
   TextEditingController numberctrl = TextEditingController();
   TextEditingController emailctrl = TextEditingController();
   TextEditingController passwordctrl = TextEditingController();
   TextEditingController placectrl = TextEditingController();
-  Future<void> users() async {
-    if (!form_key.currentState!.validate()) {
-      return;
-    }
-
-    FirebaseFirestore.instance.collection("user_signup").add({
-      "name": namectrl.text,
-      "number": numberctrl.text,
-      "email": emailctrl.text,
-      "password": passwordctrl.text,
-      "place": placectrl.text,
-      "Status": 0,
-      "Profile_path":
-          "https://images.pexels.com/photos/213780/pexels-photo-213780.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-    });
-
-    print("Success");
-    Navigator.push(context, MaterialPageRoute(
-      builder: (context) {
-        return LoginPage();
-      },
-    ));
-  }
 
 
   @override
@@ -362,7 +380,7 @@ class _user_signupState extends State<user_signup> {
                                   child: GestureDetector(
                                     onTap: () {
                                       if (form_key.currentState!.validate()) {
-                                        users();
+                                        registerUser();
                                       }
                                     },
                                     child: Container(

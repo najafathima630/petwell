@@ -1,6 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import 'add_admin_notification.dart';
 
 class AdminNotification extends StatefulWidget {
   const AdminNotification({super.key});
@@ -10,143 +13,106 @@ class AdminNotification extends StatefulWidget {
 }
 
 class _AdminNotificationState extends State<AdminNotification> {
-  TextEditingController _dateController = TextEditingController();
-  TextEditingController _timeController = TextEditingController();
-  Future<void> _selectTime(BuildContext context) async {
-    TimeOfDay? picked = await showTimePicker(
-      context: context,
-      initialTime: TimeOfDay.now(),
-    );
 
-    if (picked != null) {
-      setState(() {
-        _timeController.text = picked.format(context);
-      });
-    }
-  }
-
-  Future<void> _selectDate(BuildContext context) async {
-    DateTime? pickedDate = await showDatePicker(
-      context: context,
-      initialDate: DateTime.now(),
-      firstDate: DateTime(2000),
-      lastDate: DateTime(2100),
-    );
-
-    if (pickedDate != null) {
-      setState(() {
-        _dateController.text =
-            "${pickedDate.day}/${pickedDate.month}/${pickedDate.year}"; // Formats date
-      });
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Color(0xff5CB15A),
-        title: Center(
-            child: Text("Notification",
-                style: GoogleFonts.inter(fontSize: 24.sp))),
-      ),
-      body: SingleChildScrollView(
-          child: Padding(
-        padding: EdgeInsets.only(left: 30.w, top: 30.h),
-        child: Container(
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  Text(
-                    "Matter",
-                    style: GoogleFonts.inter(
-                        fontSize: 15.sp, fontWeight: FontWeight.bold),
-                  )
-                ],
-              ),
-              Padding(
-                padding: EdgeInsets.only(top: 20.h, left: 10.w, right: 10.r),
-                child: TextFormField(
-                  maxLines: 10,
-                  decoration: InputDecoration(
-                      border: InputBorder.none,
-                      prefixIconColor: Colors.white,
-                      suffixIconColor: Colors.white,
-                      fillColor: Colors.white,
-                      hintText: "content...",
-                      filled: true,
-                      disabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(1))),
-                ),
-              ),
-              Row(
-                children: [
-                  Text(
-                    "Time",
-                    style: GoogleFonts.inter(
-                        fontSize: 15.sp, fontWeight: FontWeight.bold),
-                  )
-                ],
-              ),
-              Padding(
-                padding: EdgeInsets.only(top: 20.h, left: 10.w, right: 10.r),
-                child: TextFormField(
-                  controller: _timeController,
-                  decoration: InputDecoration(
-                      border: InputBorder.none,
-                      prefixIconColor: Colors.white,
-                      suffixIconColor: Colors.white,
-                      fillColor: Colors.white,
-                      hintText: "Select time",
-                      filled: true,
-                      disabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(1))),
-                  onTap: () => _selectTime(context),
-                ),
-              ),
-              Row(
-                children: [
-                  Text(
-                    "Date",
-                    style: GoogleFonts.inter(
-                        fontSize: 15.sp, fontWeight: FontWeight.bold),
-                  )
-                ],
-              ),
-              Padding(
-                padding: EdgeInsets.only(top: 20.h, left: 10.w, right: 10.r),
-                child: TextFormField(
-                  controller: _dateController,
-                  decoration: InputDecoration(
-                      border: InputBorder.none,
-                      prefixIconColor: Colors.white,
-                      suffixIconColor: Colors.white,
-                      fillColor: Colors.white,
-                      hintText: "Select Date",
-                      filled: true,
-                      disabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(1))),
-                  onTap: () => _selectDate(context),
-                ),
-              ),
-            ],
+    return  Scaffold(
+        backgroundColor: Colors.white,
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          leading: CircleAvatar(
+            radius: 30.r,
           ),
-          height: 700.h,
-          width: 360.w,
-          decoration: BoxDecoration(
-              color: Color(0xffE4DADA),
-              borderRadius: BorderRadius.circular(10),
-              boxShadow: [
-                BoxShadow(
-                    spreadRadius: 0,
-                    blurRadius: 1,
-                    offset: Offset(3, 3),
-                    color: Colors.grey,
-                    blurStyle: BlurStyle.inner)
-              ]),
         ),
-      )),
-    );
+        body: Column(
+          children: [
+            Expanded(
+              child: StreamBuilder(
+                  stream: FirebaseFirestore.instance
+                      .collection("admin_notification")
+                      .snapshots(),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return Center(child: CircularProgressIndicator());
+                    }
+                    if (!snapshot.hasData) {
+                      return Center(child: Text("no data found"));
+                    }
+                    var admin = snapshot.data!.docs;
+                    return ListView.separated(
+                      itemCount: admin.length,
+                      itemBuilder: (context, index) {
+                        return Container(
+                          width: 10,
+                          height: 10,
+                        );
+                      },
+                      separatorBuilder: (context, index) {
+                        return Padding(
+                          padding: EdgeInsets.only(left: 20.w, right: 20.r),
+                          child: Container(
+                            width: 200.w,
+                            height: 200.h,
+                            child: Card(
+                              child: Column(
+                                children: [
+                                  ListTile(
+                                    title: Text(
+                                      admin[index]["Heading"],
+                                      style: TextStyle(fontSize: 20.sp),
+                                    ),
+                                    subtitle: Column(
+                                      children: [
+                                        Row(
+                                          children: [
+                                            Text(
+                                              admin[index]["Time"],
+                                              style: TextStyle(fontSize: 15.sp),
+                                            ),
+                                          ],
+                                        ),
+                                        Row(
+                                          children: [
+                                            Text(admin[index]["Date"])
+                                          ],
+                                        )
+                                      ],
+                                    ),
+                                    trailing: IconButton(
+                                      onPressed: () {
+                                        FirebaseFirestore.instance
+                                            .collection("admin_notification")
+                                            .doc(admin[index].id)
+                                            .delete();
+                                      },
+                                      icon: Icon(Icons.delete),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                    );
+                  }),
+            ),
+            Padding(
+              padding: EdgeInsets.only(left: 260.w),
+              child: FloatingActionButton(
+                shape: CircleBorder(side: BorderSide(width: 1.w)),
+                child: Icon(Icons.add),
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(
+                    builder: (context) {
+                      return AddAdminNotification();
+                    },
+                  ));
+                },
+              ),
+            ),
+          ],
+        ));
   }
 }

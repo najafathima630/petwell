@@ -5,8 +5,19 @@ import 'package:google_fonts/google_fonts.dart';
 import 'Tabbar.dart';
 
 class DoctorViewUserDetailsPage extends StatefulWidget {
-  const DoctorViewUserDetailsPage({super.key});
-
+  const DoctorViewUserDetailsPage(
+      {super.key,
+      required,
+      required this.id,
+      required this.name,
+      required this.number,
+      required this.email,
+      required this.place});
+  final id;
+  final name;
+  final number;
+  final email;
+  final place;
   @override
   State<DoctorViewUserDetailsPage> createState() =>
       _DoctorViewUserDetailsPageState();
@@ -17,13 +28,16 @@ class _DoctorViewUserDetailsPageState extends State<DoctorViewUserDetailsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xff5CB15A),
-        leading: IconButton(onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) {
-            return DoctorTapbar();
-          },));
-        }, icon: Icon(Icons.arrow_back_ios_new))
-      ),
+          backgroundColor: Color(0xff5CB15A),
+          leading: IconButton(
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(
+                  builder: (context) {
+                    return DoctorTapbar();
+                  },
+                ));
+              },
+              icon: Icon(Icons.arrow_back_ios_new))),
       body: Column(
         children: [
           Row(
@@ -46,7 +60,7 @@ class _DoctorViewUserDetailsPageState extends State<DoctorViewUserDetailsPage> {
                       Row(
                         children: [
                           Padding(
-                            padding: EdgeInsets.only(left: 20.w,top: 30.h),
+                            padding: EdgeInsets.only(left: 20.w, top: 30.h),
                             child: Text(
                               "Name:",
                               style: GoogleFonts.poppins(
@@ -54,9 +68,9 @@ class _DoctorViewUserDetailsPageState extends State<DoctorViewUserDetailsPage> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsets.only(left: 65.w,top: 30.h),
+                            padding: EdgeInsets.only(left: 20.w, top: 30.h),
                             child: Text(
-                              "Lucky",
+                              "${widget.name}",
                               style: GoogleFonts.poppins(
                                   fontSize: 17.sp, fontWeight: FontWeight.w700),
                             ),
@@ -67,15 +81,15 @@ class _DoctorViewUserDetailsPageState extends State<DoctorViewUserDetailsPage> {
                         Padding(
                           padding: EdgeInsets.only(left: 20.w, top: 30.h),
                           child: Text(
-                            "Contact number:",
+                            "number:",
                             style: GoogleFonts.poppins(
                                 fontSize: 19.sp, fontWeight: FontWeight.w400),
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.only(left: 30.w, top: 30.h),
+                          padding: EdgeInsets.only(left: 20.w, top: 30.h),
                           child: Text(
-                            "987543379",
+                            "${widget.number}",
                             style: GoogleFonts.poppins(
                                 fontSize: 17.sp, fontWeight: FontWeight.w700),
                           ),
@@ -91,9 +105,9 @@ class _DoctorViewUserDetailsPageState extends State<DoctorViewUserDetailsPage> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.only(left: 97.w,top: 30.h),
+                          padding: EdgeInsets.only(left: 20.w, top: 30.h),
                           child: Text(
-                            "nahf@gmail.com",
+                            "${widget.email}",
                             style: GoogleFonts.poppins(
                                 fontSize: 17.sp, fontWeight: FontWeight.w700),
                           ),
@@ -109,15 +123,14 @@ class _DoctorViewUserDetailsPageState extends State<DoctorViewUserDetailsPage> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.only(left: 97.w, top: 30.h),
+                          padding: EdgeInsets.only(left: 20.w, top: 30.h),
                           child: Text(
-                            "Calicut",
+                            "${widget.place}",
                             style: GoogleFonts.poppins(
                                 fontSize: 17.sp, fontWeight: FontWeight.w700),
                           ),
                         ),
                       ]),
-
                     ],
                   ),
                   width: 373.w,

@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:petwell_project/Doctor/Doctor_login_page.dart';
 import 'package:petwell_project/Doctor/doctor_notification.dart';
 import 'package:petwell_project/Doctor/user_details.dart';
+import 'package:petwell_project/Doctor/view_Appoinment_page.dart';
 
 import '../user/Add_vaccination.dart';
 
@@ -86,7 +87,7 @@ class _DoctorTapbarState extends State<DoctorTapbar> {
         body: TabBarView(
           children: [
             User_details(), // Call the first class
-            view_appoiment_details(),
+            ViewAppoinmentPage(),
 
             // Call the second class
           ],

@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -21,29 +22,44 @@ class _DoctorSignupPageState extends State<DoctorSignupPage> {
   TextEditingController passwordctrl = TextEditingController();
   TextEditingController experiencectrl = TextEditingController();
   TextEditingController Qualificationctrl = TextEditingController();
-  Future<void> Doctor() async {
-    if (!form_key.currentState!.validate()) {
-      return;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
+
+
+  void registerDoctor() async {
+    if (form_key.currentState!.validate()) {
+      try {
+        UserCredential userCredential =
+        await _auth.createUserWithEmailAndPassword(
+          email: emailctrl.text,
+          password: passwordctrl.text,
+        );
+
+        await _firestore
+            .collection('Doctor_signup')
+            .doc(userCredential.user!.uid)
+            .set({
+          "name": namectrl.text.trim(),
+          "number": numberctrl.text.trim(),
+          "email": emailctrl.text.trim(),
+          "password": passwordctrl.text.trim(),
+          "experience": experiencectrl.text.trim(),
+          "qualification":Qualificationctrl.text.trim(),
+          "Status": 0,
+          "Profile_path":
+          "https://images.pexels.com/photos/213780/pexels-photo-213780.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500 "
+        });
+
+        Navigator.push(context, MaterialPageRoute(
+          builder: (context) {
+            return LoginPage();
+          },
+        ));
+      } catch (e) {
+        print("Registration Error: $e");
+      }
     }
-
-    FirebaseFirestore.instance.collection("Doctor_signup").add({
-      "name": namectrl.text.trim(),
-      "number": numberctrl.text.trim(),
-      "email": emailctrl.text.trim(),
-      "password": passwordctrl.text.trim(),
-      "experience": experiencectrl.text.trim(),
-      "qualification":Qualificationctrl.text.trim(),
-      "Status": 0,
-      "Profile_path":
-      "https://images.pexels.com/photos/213780/pexels-photo-213780.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-    });
-
-    print("Success");
-    Navigator.push(context, MaterialPageRoute(
-      builder: (context) {
-        return DoctorLoginPage();
-      },
-    ));
   }
   @override
   Widget build(BuildContext context) {
@@ -376,7 +392,7 @@ class _DoctorSignupPageState extends State<DoctorSignupPage> {
                                   child: InkWell(
                                     onTap: () {
                                       if (form_key.currentState!.validate())
-                                      Doctor();
+                                        registerDoctor();
                                     },
                                     child: Container(
                                       child: Center(

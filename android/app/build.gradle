@@ -24,8 +24,8 @@ android {
 
     defaultConfig {
         applicationId = "com.example.petwell_project"
-        minSdk = 21  // Set manually if needed
-        targetSdk   // Set manually
+        minSdk = 23  // Set manually if needed
+        targetSdk = 33 // Set manually
         versionCode = flutter.versionCode
         versionName = flutter.versionName
     }
