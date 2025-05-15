@@ -245,28 +245,6 @@ class _LoginPageState extends State<LoginPage> {
                               )
                             ],
                           ),
-                          Column(
-                            children: [
-                              Row(
-                                children: [
-                                  Padding(
-                                    padding:
-                                        EdgeInsets.only(left: 110.w, top: 10.h),
-                                    child: InkWell(
-                                      onTap: () {
-                                        loginUser();
-                                      },
-                                      child: CircleAvatar(
-                                        radius: 30.r,
-                                        backgroundImage: AssetImage(
-                                            "assets/download (1).png"),
-                                      ),
-                                    ),
-                                  )
-                                ],
-                              )
-                            ],
-                          ),
                           SizedBox(
                             height: 20.h,
                           ),

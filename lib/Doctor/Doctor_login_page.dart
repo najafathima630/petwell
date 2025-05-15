@@ -8,6 +8,7 @@ import 'package:petwell_project/Doctor/Doctor_signup_page.dart';
 import 'package:petwell_project/Doctor/user_details.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'Navigation_bar_doctor.dart';
 import 'Tabbar.dart';
 
 class DoctorLoginPage extends StatefulWidget {
@@ -36,7 +37,7 @@ class _DoctorLoginPageState extends State<DoctorLoginPage> {
       userdata.setString("doctor_id", id);
       Navigator.push(context, MaterialPageRoute(
         builder: (context) {
-          return DoctorTapbar();
+          return NavigationBarDoctor();
         },
       ));
       print("done");
@@ -74,7 +75,7 @@ class _DoctorLoginPageState extends State<DoctorLoginPage> {
 
             Navigator.pushReplacement(
               context,
-              MaterialPageRoute(builder: (context) => DoctorTapbar()),
+              MaterialPageRoute(builder: (context) => NavigationBarDoctor()),
             );
           } else {
             ScaffoldMessenger.of(context).showSnackBar(
@@ -240,7 +241,7 @@ class _DoctorLoginPageState extends State<DoctorLoginPage> {
                             )
                           ],
                         ),
-                        height: 501.h,
+                        height: 520.h,
                         width: 339.w,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10.sp),

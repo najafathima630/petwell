@@ -1,24 +1,48 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:petwell_project/Admin/admin_user.dart';
 
+import 'Admin_doctor.dart';
+
 class Admin_view_Doctor extends StatefulWidget {
-  const Admin_view_Doctor({super.key, required this.id});
+  const Admin_view_Doctor({
+    super.key,
+    required this.id,
+  });
   final id;
+
   @override
   State<Admin_view_Doctor> createState() => _Admin_view_DoctorState();
 }
 
 class _Admin_view_DoctorState extends State<Admin_view_Doctor> {
+  Future<void> selectaccept() async {
+    setState(() {
+      FirebaseFirestore.instance
+          .collection("Appoinment_details")
+          .doc(widget.id)
+          .update({"Status": 1});
+    });
+  }
+
+  Future<void> selectreject() async {
+    setState(() {
+      FirebaseFirestore.instance
+          .collection("Appoinment_details")
+          .doc(widget.id)
+          .update({"Status": 2});
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xff5CB15A),
-        title: Padding(
-          padding: EdgeInsets.only(left: 150.w),
+        title: Center(
           child: Text(
             "Doctors",
             style: GoogleFonts.poppins(
@@ -28,7 +52,7 @@ class _Admin_view_DoctorState extends State<Admin_view_Doctor> {
       ),
       body: FutureBuilder(
           future: FirebaseFirestore.instance
-              .collection("user_register")
+              .collection("Doctor_signup")
               .doc(widget.id)
               .get(),
           builder: (context, snapshot) {
@@ -62,7 +86,7 @@ class _Admin_view_DoctorState extends State<Admin_view_Doctor> {
                                 onPressed: () {
                                   Navigator.of(context).push(MaterialPageRoute(
                                     builder: (context) {
-                                      return AdminUser();
+                                      return AdminDoctor();
                                     },
                                   ));
                                 },
@@ -76,15 +100,17 @@ class _Admin_view_DoctorState extends State<Admin_view_Doctor> {
                                 padding: EdgeInsets.only(left: 20.w),
                                 child: CircleAvatar(
                                   radius: 70.r,
-                                  backgroundColor: Color(0xff78573F),
+                                  backgroundColor: Colors.brown[300],
+                                  child: SvgPicture.string(
+                                      "assets/Vector (2).svg"),
                                 )),
                             Row(
                               children: [
                                 Padding(
                                   padding:
-                                      EdgeInsets.only(left: 160.w, top: 2.h),
+                                      EdgeInsets.only(left: 170.w, top: 2.h),
                                   child: Text(
-                                    Doctordata["name"]??"no data found",
+                                    Doctordata["name"] ?? "no data found",
                                     style: GoogleFonts.poppins(
                                         fontSize: 18.sp,
                                         fontWeight: FontWeight.w600),
@@ -99,9 +125,9 @@ class _Admin_view_DoctorState extends State<Admin_view_Doctor> {
                                       EdgeInsets.only(top: 5.h, left: 40.w),
                                   child: Text(
                                     "Username",
-                                    style: GoogleFonts.poppins(
+                                    style: GoogleFonts.rubik(
                                         color: Colors.black,
-                                        fontWeight: FontWeight.w500,
+                                        fontWeight: FontWeight.w300,
                                         fontSize: 18.sp),
                                   ),
                                 )
@@ -115,20 +141,18 @@ class _Admin_view_DoctorState extends State<Admin_view_Doctor> {
                                     child: Row(
                                       children: [
                                         Text(
-                                          Doctordata["name"]??"no data",
+                                          Doctordata["name"] ?? "no data",
                                           style: GoogleFonts.poppins(
                                               fontWeight: FontWeight.w300,
                                               color: Colors.grey),
                                         ),
                                       ],
                                     ),
-                                    height: 50.h,
+                                    height: 41.h,
                                     width: 300.w,
                                     decoration: BoxDecoration(
                                         color: Color(0xffFFFFFF),
-                                        borderRadius:
-                                            BorderRadius.circular(10.r),
-                                        border: Border.all(width: 1)),
+                                        borderRadius: BorderRadius.circular(8)),
                                   ),
                                 )
                               ],
@@ -143,9 +167,9 @@ class _Admin_view_DoctorState extends State<Admin_view_Doctor> {
                                       EdgeInsets.only(top: 5.h, left: 40.w),
                                   child: Text(
                                     "Phone number",
-                                    style: GoogleFonts.poppins(
+                                    style: GoogleFonts.rubik(
                                         color: Colors.black,
-                                        fontWeight: FontWeight.w500,
+                                        fontWeight: FontWeight.w300,
                                         fontSize: 18.sp),
                                   ),
                                 )
@@ -156,24 +180,18 @@ class _Admin_view_DoctorState extends State<Admin_view_Doctor> {
                                 Padding(
                                   padding: EdgeInsets.only(left: 45.w),
                                   child: Container(
-                                    child: Row(
-                                      children: [
-                                        Text(
-                                          Doctordata["number"]??"no data",
-                                          style: GoogleFonts.poppins(
-                                              fontWeight: FontWeight.w300,
-                                              color: Colors.grey),
-                                        ),
-                                      ],
-                                    ),
-                                    height: 50.h,
-                                    width: 300.w,
-                                    decoration: BoxDecoration(
-                                        color: Color(0xffFFFFFF),
-                                        borderRadius:
-                                            BorderRadius.circular(10.r),
-                                        border: Border.all(width: 1)),
-                                  ),
+                                      child: Text(
+                                        Doctordata["number"] ?? "no data",
+                                        style: GoogleFonts.rubik(
+                                            fontWeight: FontWeight.w300,
+                                            color: Colors.grey),
+                                      ),
+                                      height: 41.h,
+                                      width: 300.w,
+                                      decoration: BoxDecoration(
+                                          color: Color(0xffFFFFFF),
+                                          borderRadius:
+                                              BorderRadius.circular(8))),
                                 )
                               ],
                             ),
@@ -186,10 +204,10 @@ class _Admin_view_DoctorState extends State<Admin_view_Doctor> {
                                   padding:
                                       EdgeInsets.only(top: 5.h, left: 40.w),
                                   child: Text(
-                                    "email address",
-                                    style: GoogleFonts.poppins(
+                                    "Qualification",
+                                    style: GoogleFonts.rubik(
                                         color: Colors.black,
-                                        fontWeight: FontWeight.w500,
+                                        fontWeight: FontWeight.w300,
                                         fontSize: 18.sp),
                                   ),
                                 )
@@ -200,23 +218,17 @@ class _Admin_view_DoctorState extends State<Admin_view_Doctor> {
                                 Padding(
                                   padding: EdgeInsets.only(left: 45.w),
                                   child: Container(
-                                    child: Row(
-                                      children: [
-                                        Text(
-                                          "Email",
-                                          style: GoogleFonts.poppins(
-                                              color: Colors.grey,
-                                              fontWeight: FontWeight.w300),
-                                        ),
-                                      ],
+                                    child: Text(
+                                      Doctordata["qualification"] ?? "",
+                                      style: GoogleFonts.poppins(
+                                          color: Colors.grey,
+                                          fontWeight: FontWeight.w300),
                                     ),
-                                    height: 50.h,
+                                    height: 41.h,
                                     width: 300.w,
                                     decoration: BoxDecoration(
                                         color: Color(0xffFFFFFF),
-                                        borderRadius:
-                                            BorderRadius.circular(10.r),
-                                        border: Border.all(width: 1)),
+                                        borderRadius: BorderRadius.circular(8)),
                                   ),
                                 )
                               ],
@@ -231,9 +243,9 @@ class _Admin_view_DoctorState extends State<Admin_view_Doctor> {
                                       EdgeInsets.only(top: 5.h, left: 40.w),
                                   child: Text(
                                     "Work experience",
-                                    style: GoogleFonts.poppins(
+                                    style: GoogleFonts.rubik(
                                         color: Colors.black,
-                                        fontWeight: FontWeight.w500,
+                                        fontWeight: FontWeight.w300,
                                         fontSize: 18.sp),
                                   ),
                                 )
@@ -244,23 +256,17 @@ class _Admin_view_DoctorState extends State<Admin_view_Doctor> {
                                 Padding(
                                   padding: EdgeInsets.only(left: 45.w),
                                   child: Container(
-                                    child: Row(
-                                      children: [
-                                        Text(
-                                          "experience",
-                                          style: GoogleFonts.poppins(
-                                              color: Colors.grey,
-                                              fontWeight: FontWeight.w300),
-                                        ),
-                                      ],
+                                    child: Text(
+                                      Doctordata["experience"] ?? "",
+                                      style: GoogleFonts.poppins(
+                                          color: Colors.grey,
+                                          fontWeight: FontWeight.w300),
                                     ),
-                                    height: 50.h,
+                                    height: 41.h,
                                     width: 300.w,
                                     decoration: BoxDecoration(
                                         color: Color(0xffFFFFFF),
-                                        borderRadius:
-                                            BorderRadius.circular(10.r),
-                                        border: Border.all(width: 1)),
+                                        borderRadius: BorderRadius.circular(8)),
                                   ),
                                 )
                               ],
@@ -275,9 +281,9 @@ class _Admin_view_DoctorState extends State<Admin_view_Doctor> {
                                       EdgeInsets.only(top: 5.h, left: 40.w),
                                   child: Text(
                                     "Email",
-                                    style: GoogleFonts.poppins(
+                                    style: GoogleFonts.rubik(
                                         color: Colors.black,
-                                        fontWeight: FontWeight.w500,
+                                        fontWeight: FontWeight.w300,
                                         fontSize: 18.sp),
                                   ),
                                 )
@@ -291,20 +297,18 @@ class _Admin_view_DoctorState extends State<Admin_view_Doctor> {
                                     child: Row(
                                       children: [
                                         Text(
-                                          "example@gmail.com",
+                                          Doctordata["email"] ?? "",
                                           style: GoogleFonts.poppins(
                                               color: Colors.grey,
                                               fontWeight: FontWeight.w300),
                                         ),
                                       ],
                                     ),
-                                    height: 50.h,
+                                    height: 41.h,
                                     width: 300.w,
                                     decoration: BoxDecoration(
                                         color: Color(0xffFFFFFF),
-                                        borderRadius:
-                                            BorderRadius.circular(10.r),
-                                        border: Border.all(width: 1)),
+                                        borderRadius: BorderRadius.circular(8)),
                                   ),
                                 )
                               ],
@@ -319,10 +323,10 @@ class _Admin_view_DoctorState extends State<Admin_view_Doctor> {
                                       EdgeInsets.only(top: 5.h, left: 40.w),
                                   child: Text(
                                     "Experience",
-                                    style: GoogleFonts.poppins(
+                                    style: GoogleFonts.rubik(
                                         color: Colors.black,
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 18.sp),
+                                        fontWeight: FontWeight.w300,
+                                        fontSize: 15.sp),
                                   ),
                                 )
                               ],
@@ -332,81 +336,124 @@ class _Admin_view_DoctorState extends State<Admin_view_Doctor> {
                                 Padding(
                                   padding: EdgeInsets.only(left: 45.w),
                                   child: Container(
-                                    child: Row(
-                                      children: [
-                                        Text(
-                                          "Enter your experience",
-                                          style: GoogleFonts.poppins(
-                                              color: Colors.grey,
-                                              fontWeight: FontWeight.w300),
-                                        ),
-                                      ],
-                                    ),
-                                    height: 50.h,
-                                    width: 300.w,
-                                    decoration: BoxDecoration(
-                                        color: Color(0xffFFFFFF),
-                                        borderRadius:
-                                            BorderRadius.circular(10.r),
-                                        border: Border.all(width: 1)),
-                                  ),
+                                      child: Row(
+                                        children: [
+                                          Text(
+                                            Doctordata["experience"] ?? "",
+                                            style: GoogleFonts.poppins(
+                                                color: Colors.grey,
+                                                fontWeight: FontWeight.w300),
+                                          ),
+                                        ],
+                                      ),
+                                      height: 41.h,
+                                      width: 300.w,
+                                      decoration: BoxDecoration(
+                                          color: Color(0xffFFFFFF),
+                                          borderRadius:
+                                              BorderRadius.circular(10))),
                                 )
                               ],
                             ),
-                            Row(
-                              children: [
-                                Padding(
-                                  padding:
-                                      EdgeInsets.only(left: 30.w, top: 30.h),
-                                  child: Container(
-                                    child: Padding(
-                                      padding:
-                                          EdgeInsets.only(top: 5.h, left: 20.w),
-                                      child: Center(
-                                        child: Text(
-                                          "Accept",
-                                          style: GoogleFonts.poppins(
-                                              color: Colors.white,
-                                              fontWeight: FontWeight.w500,
-                                              fontSize: 20.sp),
+                            Doctordata["Status"] == 0
+                                ? Row(
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsets.only(
+                                            left: 50.w, top: 100.h),
+                                        child: GestureDetector(
+                                          onTap: () {
+                                            selectaccept();
+                                          },
+                                          child: Container(
+                                            child: Center(
+                                              child: Text(
+                                                "Accept",
+                                                style: GoogleFonts.poppins(
+                                                    color: Colors.white,
+                                                    fontWeight: FontWeight.w700,
+                                                    fontSize: 15.sp),
+                                              ),
+                                            ),
+                                            height: 40.h,
+                                            width: 110.w,
+                                            decoration: BoxDecoration(
+                                                color: Color(0xff49CD6E),
+                                                borderRadius:
+                                                    BorderRadius.circular(
+                                                        14.r)),
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                    height: 42.h,
-                                    width: 142.w,
-                                    decoration: BoxDecoration(
-                                        borderRadius:
-                                            BorderRadius.circular(5.r),
-                                        color: Colors.lightGreen),
-                                  ),
-                                ),
-                                Padding(
-                                  padding:
-                                      EdgeInsets.only(left: 30.w, top: 30.h),
-                                  child: Container(
-                                    child: Padding(
-                                      padding:
-                                          EdgeInsets.only(top: 5.h, left: 20.w),
-                                      child: Center(
-                                        child: Text(
-                                          "Reject",
-                                          style: GoogleFonts.poppins(
-                                              color: Colors.white,
-                                              fontWeight: FontWeight.w500,
-                                              fontSize: 20.sp),
+                                      Row(
+                                        children: [
+                                          Padding(
+                                            padding: EdgeInsets.only(
+                                                left: 20.w, top: 100.h),
+                                            child: GestureDetector(
+                                              onTap: () {
+                                                selectreject();
+                                              },
+                                              child: Container(
+                                                child: Center(
+                                                  child: Text(
+                                                    "Reject",
+                                                    style: GoogleFonts.poppins(
+                                                        color: Colors.white,
+                                                        fontWeight:
+                                                            FontWeight.w700,
+                                                        fontSize: 15.sp),
+                                                  ),
+                                                ),
+                                                height: 40.h,
+                                                width: 110.w,
+                                                decoration: BoxDecoration(
+                                                    color: Color(0xffCD4949),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            12.r)),
+                                              ),
+                                            ),
+                                          )
+                                        ],
+                                      )
+                                    ],
+                                  )
+                                : Doctordata["Status"] == 1
+                                    ? Container(
+                                        child: Center(
+                                          child: Text(
+                                            "Accept",
+                                            style: GoogleFonts.poppins(
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.w700,
+                                                fontSize: 15.sp),
+                                          ),
                                         ),
+                                        height: 40.h,
+                                        width: 110.w,
+                                        decoration: BoxDecoration(
+                                            color: Color(0xff49CD6E),
+                                            borderRadius:
+                                                BorderRadius.circular(14.r)),
+                                      )
+                                    : Container(
+                                        child: Center(
+                                          child: Text(
+                                            "Rejected",
+                                            style: GoogleFonts.poppins(
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.w700,
+                                                fontSize: 15.sp),
+                                          ),
+                                        ),
+                                        height: 40.h,
+                                        width: 110.w,
+                                        decoration: BoxDecoration(
+                                            color: Color(0xffCD4949),
+                                            borderRadius:
+                                                BorderRadius.circular(12.r)),
                                       ),
-                                    ),
-                                    height: 42.h,
-                                    width: 142.w,
-                                    decoration: BoxDecoration(
-                                        borderRadius:
-                                            BorderRadius.circular(5.r),
-                                        color: Colors.red),
-                                  ),
-                                )
-                              ],
-                            )
                           ],
                         ),
                       ]),

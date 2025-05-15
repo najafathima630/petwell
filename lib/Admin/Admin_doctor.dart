@@ -65,7 +65,9 @@ class _AdminDoctorState extends State<AdminDoctor> {
                               Navigator.push(context, MaterialPageRoute(
                                 builder: (context) {
                                   return Admin_view_Doctor(
-                                      id: Doctor[index].id);
+                                      id: Doctor[index].id,
+
+                                  );
                                 },
                               ));
                             },

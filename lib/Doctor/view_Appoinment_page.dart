@@ -41,11 +41,21 @@ class _ViewAppoinmentPageState extends State<ViewAppoinmentPage> {
                         margin: EdgeInsets.symmetric(vertical: 10),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20)),
-                        child: InkWell(onTap: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) {
-                            return ViewAppoinment();
-                          },));
-                        },
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.push(context, MaterialPageRoute(
+                              builder: (context) {
+                                return ViewAppoinment(
+                                  id: appoinment[index].id,
+                                  owner_name: appoinment[index]["owner_name"],
+                                  name: appoinment[index]["name"],
+                                  pet_type: appoinment[index]["pet_type"],
+                                  gender: appoinment[index]["gender"],
+
+                                );
+                              },
+                            ));
+                          },
                           child: Container(
                             padding: EdgeInsets.all(16),
                             decoration: BoxDecoration(
@@ -67,7 +77,8 @@ class _ViewAppoinmentPageState extends State<ViewAppoinmentPage> {
                                 SizedBox(width: 16.w),
                                 Expanded(
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Text(appoinment[index]["name"],
                                           style: GoogleFonts.inter(

@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class user_add_appoinment extends StatefulWidget {
-  const user_add_appoinment({super.key});
+class User_view_doctor extends StatefulWidget {
+  const User_view_doctor({super.key});
 
   @override
-  State<user_add_appoinment> createState() => _user_add_appoinmentState();
+  State<User_view_doctor> createState() => _User_view_doctorState();
 }
 
-class _user_add_appoinmentState extends State<user_add_appoinment> {
+class _User_view_doctorState extends State<User_view_doctor> {
   String selectedTime = "04:00 pm"; // Default selected time
   String selectedDate = "Mon\n12/1"; // Default selected date
 
@@ -35,7 +35,7 @@ class _user_add_appoinmentState extends State<user_add_appoinment> {
                     color: Colors.black,
                     image: DecorationImage(
                         image: AssetImage(
-                          "Assets/doctor.jpg",
+                          "assets/Frame 12.png",
                         ),
                         fit: BoxFit.cover)),
               )

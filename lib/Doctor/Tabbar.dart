@@ -6,7 +6,7 @@ import 'package:petwell_project/Doctor/doctor_notification.dart';
 import 'package:petwell_project/Doctor/user_details.dart';
 import 'package:petwell_project/Doctor/view_Appoinment_page.dart';
 
-import '../user/Add_vaccination.dart';
+import 'Doctor_view_pet_profile.dart';
 
 class DoctorTapbar extends StatefulWidget {
   const DoctorTapbar({super.key});
@@ -34,11 +34,11 @@ class _DoctorTapbarState extends State<DoctorTapbar> {
           ),
           actions: [
             IconButton(
-              icon: Icon(Icons.notifications, color: Colors.black),
+              icon: Icon(Icons.pets, color: Colors.black),
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(
                   builder: (context) {
-                    return DoctorNotification();
+                    return DoctorViewPetProfile();
                   },
                 ));
               },

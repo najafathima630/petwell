@@ -15,7 +15,7 @@ import 'Admin/admin_notification.dart';
 import 'Admin/admin_user.dart';
 import 'Admin/admin_view_doctor_details.dart';
 import 'Admin/admin_view_user_details.dart';
-import 'user/Add_vaccination.dart';
+
 import 'Doctor/Doctor_login_page.dart';
 import 'Doctor/Doctor_signup_page.dart';
 import 'Doctor/Doctor_view_user_details_page.dart';
@@ -66,7 +66,7 @@ class MyApp extends StatelessWidget {
                 colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
                 useMaterial3: true,
               ),
-              home: LogoScreen (),
+              home: LogoScreen(),
             ));
   }
 }

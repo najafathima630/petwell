@@ -1,5 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:petwell_project/user/user_homa_page.dart';
+
+import 'Navigation_user.dart';
 
 class PetProfilePage extends StatefulWidget {
   @override
@@ -9,7 +13,7 @@ class PetProfilePage extends StatefulWidget {
 class _PetProfilePageState extends State<PetProfilePage> {
   String? selectedColor;
   String? selectedWeight;
-  bool isFemale = true;
+  String _selectedGender = "";
   DateTime? selectedDate;
 
   Future<void> _selectDate(BuildContext context) async {
@@ -26,6 +30,28 @@ class _PetProfilePageState extends State<PetProfilePage> {
     }
   }
 
+  final form_key = GlobalKey<FormState>();
+  TextEditingController birthdatectrl = TextEditingController();
+  TextEditingController colorctrl = TextEditingController();
+  TextEditingController genderctrl = TextEditingController();
+  TextEditingController weightctrl = TextEditingController();
+
+  Future<void> petprofile() async {
+    FirebaseFirestore.instance.collection("pets_details").add({
+      "birthday": selectedDate,
+      "color": selectedColor,
+      "gender": _selectedGender,
+      "weight": selectedWeight,
+
+    });
+    print("Success");
+    Navigator.push(context, MaterialPageRoute(
+      builder: (context) {
+        return NavigationBarMechanic();
+      },
+    ));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,7 +61,17 @@ class _PetProfilePageState extends State<PetProfilePage> {
           icon: Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () {},
         ),
-        actions: [Icon(Icons.add)],
+        actions: [
+          IconButton(
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(
+                  builder: (context) {
+                    return PetProfilePage();
+                  },
+                ));
+              },
+              icon: Icon(Icons.add))
+        ],
         title: Padding(
           padding: EdgeInsets.only(left: 60),
           child: Text("Pet Profile", style: TextStyle(color: Colors.black)),
@@ -69,7 +105,7 @@ class _PetProfilePageState extends State<PetProfilePage> {
                 backgroundImage: AssetImage("assets/images (3) 2.png"),
               ),
               SizedBox(height: 10),
-              Text("Name",
+              Text( "Name",
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
               SizedBox(height: 20),
               TextField(
@@ -99,26 +135,41 @@ class _PetProfilePageState extends State<PetProfilePage> {
                   Expanded(
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: isFemale ? Colors.green : Colors.white,
+                        backgroundColor: _selectedGender == "female"
+                            ? Colors.green
+                            : Colors.white,
                         side: BorderSide(color: Colors.green),
                       ),
-                      onPressed: () => setState(() => isFemale = true),
-                      child: Text("Female",
-                          style: TextStyle(
-                              color: isFemale ? Colors.white : Colors.green)),
+                      onPressed: () =>
+                          setState(() => _selectedGender = "female"),
+                      child: Text(
+                        "Female",
+                        style: TextStyle(
+                          color: _selectedGender == "female"
+                              ? Colors.white
+                              : Colors.green,
+                        ),
+                      ),
                     ),
                   ),
                   SizedBox(width: 10),
                   Expanded(
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: isFemale ? Colors.white : Colors.green,
+                        backgroundColor: _selectedGender == "male"
+                            ? Colors.green
+                            : Colors.white,
                         side: BorderSide(color: Colors.green),
                       ),
-                      onPressed: () => setState(() => isFemale = false),
-                      child: Text("Male",
-                          style: TextStyle(
-                              color: isFemale ? Colors.green : Colors.white)),
+                      onPressed: () => setState(() => _selectedGender = "male"),
+                      child: Text(
+                        "Male",
+                        style: TextStyle(
+                          color: _selectedGender == "male"
+                              ? Colors.white
+                              : Colors.green,
+                        ),
+                      ),
                     ),
                   ),
                 ],
@@ -131,17 +182,22 @@ class _PetProfilePageState extends State<PetProfilePage> {
               }),
               Padding(
                 padding: EdgeInsets.only(top: 50),
-                child: Container(
-                  child: Center(
-                      child: Text(
-                    "Save",
-                    style: GoogleFonts.inter(fontSize: 24),
-                  )),
-                  height: 54,
-                  width: 356,
-                  decoration: BoxDecoration(
-                      color: Color(0xff5CB15A),
-                      borderRadius: BorderRadius.circular(30)),
+                child: InkWell(
+                  onTap: () {
+                    petprofile();
+                  },
+                  child: Container(
+                    child: Center(
+                        child: Text(
+                      "Save",
+                      style: GoogleFonts.inter(fontSize: 24),
+                    )),
+                    height: 54,
+                    width: 356,
+                    decoration: BoxDecoration(
+                        color: Color(0xff5CB15A),
+                        borderRadius: BorderRadius.circular(30)),
+                  ),
                 ),
               )
             ],

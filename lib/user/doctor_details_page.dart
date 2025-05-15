@@ -3,6 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'User_ view_doctor_details.dart';
+
+
+
 class doctor_details extends StatefulWidget {
   const doctor_details({super.key});
 
@@ -57,70 +61,76 @@ class _doctor_detailsState extends State<doctor_details> {
                         margin: const EdgeInsets.symmetric(vertical: 10),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20)),
-                        child: Container(
-                          padding: const EdgeInsets.all(16),
-                          decoration: BoxDecoration(
-                            color: Color(0xffCF6A6AF0E4E4),
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: Row(
-                            children: [
-                              Container(
-                                height: 50,
-                                width: 50,
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.rectangle,
-                                  color: Colors.grey[400],
+                        child: GestureDetector(onTap: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (context) {
+                            return User_view_doctor();
+                          },) );
+                        },
+                          child: Container(
+                            padding: const EdgeInsets.all(16),
+                            decoration: BoxDecoration(
+                              color: Color(0xffCF6A6AF0E4E4),
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            child: Row(
+                              children: [
+                                Container(
+                                  height: 50,
+                                  width: 50,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.rectangle,
+                                    color: Colors.grey[400],
+                                  ),
+                                  child: const Icon(Icons.person,
+                                      size: 30, color: Colors.white),
                                 ),
-                                child: const Icon(Icons.person,
-                                    size: 30, color: Colors.white),
-                              ),
-                              const SizedBox(width: 16),
-                              Expanded(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(doctor[index]["name"],
-                                        style: GoogleFonts.inter(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w600)),
-                                    Text(doctor[index]["experience"],
+                                const SizedBox(width: 16),
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(doctor[index]["name"],
+                                          style: GoogleFonts.inter(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w600)),
+                                      Text(doctor[index]["experience"],
+                                          style: GoogleFonts.inter(
+                                              fontSize: 14,
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.w600)),
+                                      Text(
+                                        doctor[index]["qualification"],
                                         style: GoogleFonts.inter(
                                             fontSize: 14,
                                             color: Colors.black,
-                                            fontWeight: FontWeight.w600)),
-                                    Text(
-                                      doctor[index]["qualification"],
-                                      style: GoogleFonts.inter(
-                                          fontSize: 14,
-                                          color: Colors.black,
-                                          fontWeight: FontWeight.w600),
-                                    ),
-                                    Text(doctor[index]["number"],
-                                        style: GoogleFonts.inter(
-                                            fontSize: 14,
+                                            fontWeight: FontWeight.w600),
+                                      ),
+                                      Text(doctor[index]["number"],
+                                          style: GoogleFonts.inter(
+                                              fontSize: 14,
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.w600)),
+                                      const SizedBox(height: 4),
+                                      Row(
+                                        children: [
+                                          const Icon(
+                                            Icons.access_time,
+                                            size: 16,
                                             color: Colors.black,
-                                            fontWeight: FontWeight.w600)),
-                                    const SizedBox(height: 4),
-                                    Row(
-                                      children: [
-                                        const Icon(
-                                          Icons.access_time,
-                                          size: 16,
-                                          color: Colors.black,
-                                        ),
-                                        const SizedBox(width: 5),
-                                        Text(
-                                            "Monday - Friday at 8:00 am - 5:00pm",
-                                            style: GoogleFonts.inter(
-                                                fontSize: 12,
-                                                color: Colors.black)),
-                                      ],
-                                    ),
-                                  ],
+                                          ),
+                                          const SizedBox(width: 5),
+                                          Text(
+                                              "Monday - Friday at 8:00 am - 5:00pm",
+                                              style: GoogleFonts.inter(
+                                                  fontSize: 12,
+                                                  color: Colors.black)),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                       );

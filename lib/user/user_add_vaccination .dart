@@ -1,5 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:petwell_project/user/user_homa_page.dart';
 
 class User_add_vaccination extends StatefulWidget {
   const User_add_vaccination({super.key});
@@ -9,21 +12,23 @@ class User_add_vaccination extends StatefulWidget {
 }
 
 class _User_add_vaccinationState extends State<User_add_vaccination> {
-  bool isFemale = true;
+  String selectedDose = 'first';
+  final form_key = GlobalKey<FormState>();
+  var vaccinationnamectrl = TextEditingController();
+  var weightctrl = TextEditingController();
+  var statusctrl = TextEditingController();
 
-  Future<void> _selectDate(BuildContext context) async {
-    DateTime? selectedDate;
-    final DateTime? picked = await showDatePicker(
-      context: context,
-      initialDate: selectedDate ?? DateTime.now(),
-      firstDate: DateTime(2000),
-      lastDate: DateTime(2100),
-    );
-    if (picked != null && picked != selectedDate) {
-      setState(() {
-        selectedDate = picked;
-      });
-    }
+  Future<void> addvaccination() async {
+    FirebaseFirestore.instance.collection("vaccination_details").add({
+      "vaccination_name": vaccinationnamectrl.text,
+      "weight": weightctrl.text,
+      "status": statusctrl.text,
+      "doseType": selectedDose,
+    });
+    print("Success");
+    Navigator.push(context, MaterialPageRoute(builder: (context) {
+      return user_homepage();
+    }));
   }
 
   @override
@@ -32,196 +37,238 @@ class _User_add_vaccinationState extends State<User_add_vaccination> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Color(0xff5CB15A),
-        leading: Icon(Icons.arrow_back_ios_new),
+        leading: IconButton(
+            onPressed: () {},
+            icon: IconButton(
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(
+                    builder: (context) {
+                      return user_homepage();
+                    },
+                  ));
+                },
+                icon: Icon(Icons.arrow_back_ios_new))),
         title: Center(
-            child: Text(
-              "Vaccination",
-              style: GoogleFonts.hind(),
-            )),
+          child: Text(
+            "Vaccination",
+            style: GoogleFonts.hind(),
+          ),
+        ),
       ),
-      body: ListView(
-        children:[ Column(
-          children: [
-            Row(
-              children: [
-                SizedBox(
-                  width: 10,
-                ),
-                Text(
-                  "vaccination Name",
-                  style: GoogleFonts.rubik(
-                      fontSize: 14, fontWeight: FontWeight.w500),
-                )
-              ],
-            ),
-            Padding(
-              padding: EdgeInsets.only(left: 20, right: 20, top: 10),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Color(0xFFD9D9D9), // Light peach background
-                  borderRadius: BorderRadius.circular(12), // Rounded corners
-                ),
-                child: TextFormField(
-                  decoration: InputDecoration(
-                    hintText: "Enter your vacccination name",
-                    hintStyle: TextStyle(
-                        color: Colors.grey, fontSize: 12), // Hint text color
-                    border: InputBorder.none, // Remove default border
-                    contentPadding: EdgeInsets.symmetric(
-                        horizontal: 16, vertical: 12), // Padding inside field
-                  ),
-                ),
-              ),
-            ),
-            Row(
-              children: [
-                Padding(
-                  padding: EdgeInsets.only(top: 40, left: 10),
-                  child: Text(
-                    "Date",
-                    style: GoogleFonts.rubik(
-                        fontSize: 14, fontWeight: FontWeight.w500),
-                  ),
-                )
-              ],
-            ),
-            Padding(
-              padding: EdgeInsets.only(left: 20, right: 20, top: 10),
-              child: Container(
-                width: 300,
-                decoration: BoxDecoration(
-                  color: Color(0xFFD9D9D9), // Light peach background
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: TextFormField(
-                  readOnly: true, // Prevents manual typing
-                  decoration: InputDecoration(
-                    hintText: "12/10/2003",
-                    hintStyle: TextStyle(color: Colors.grey),
-                    border: InputBorder.none,
-                    contentPadding:
-                    EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                    suffixIcon: Icon(Icons.calendar_today,
-                        color: Colors.black), // Calendar icon
-                  ),
-                  onTap: () {
-                    _selectDate(context); // Open calendar on tap
-                  },
-                ),
-              ),
-            ),
-            Row(
-              children: [
-                Padding(
-                  padding: EdgeInsets.only(top: 40, left: 10),
-                  child: Text(
-                    "Status",
-                    style: GoogleFonts.rubik(
-                        fontSize: 14, fontWeight: FontWeight.w500),
-                  ),
-                )
-              ],
-            ),
-            Padding(
-              padding: EdgeInsets.only(left: 20, right: 20, top: 10),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Color(0xFFD9D9D9), // Light peach background
-                  borderRadius: BorderRadius.circular(12), // Rounded corners
-                ),
-                child: TextFormField(
-                  decoration: InputDecoration(
-                    hintText: "Completed",
-                    hintStyle: TextStyle(
-                        color: Colors.grey, fontSize: 12), // Hint text color
-                    border: InputBorder.none, // Remove default border
-                    contentPadding: EdgeInsets.symmetric(
-                        horizontal: 16, vertical: 12), // Padding inside field
-                  ),
-                ),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 80),
-              child: Row(
+      body: Form(
+        key: form_key,
+        child: ListView(children: [
+          Column(
+            children: [
+              Row(
                 children: [
-                  // First Button: Female
-                  Expanded(
-                    child: Padding(
-                      padding: EdgeInsets.only(left: 20, right: 10),
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor:
-                          isFemale ? Color(0xff238F8F) : Colors.white,
-                          side: BorderSide(color: Colors.black),
-                        ),
-                        onPressed: () => setState(() => isFemale = true),
-                        child: Text("First dose",
-                            style: TextStyle(
-                                color: isFemale ? Colors.white : Colors.green)),
-                      ),
-                    ),
-                  ),
-                  // Second Button: Male
-                  Expanded(
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 10),
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: isFemale ? Colors.white : Colors.green,
-                          side: BorderSide(color: Colors.black),
-                        ),
-                        onPressed: () => setState(() => isFemale = false),
-                        child: Text("second dose",
-                            style: TextStyle(
-                                color: isFemale ? Colors.green : Colors.white)),
-                      ),
-                    ),
-                  ),
-                  // Third Button: Other
-                  Expanded(
-                    child: Padding(
-                      padding: EdgeInsets.only(right: 20, left: 10),
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: isFemale == false
-                              ? Color(0xff238F8F)
-                              : Colors.white,
-                          side: BorderSide(color: Colors.black),
-                        ),
-                        onPressed: () {
-                          setState(() => isFemale =
-                          false); // "null" can represent "Other" or a neutral option.
-                        },
-                        child: Text("Booster",
-                            style: TextStyle(
-                                color: isFemale == false
-                                    ? Colors.white
-                                    : Colors.green)),
-                      ),
-                    ),
-                  ),
+                  SizedBox(width: 10),
+                  Text(
+                    "Vaccination Name",
+                    style: GoogleFonts.rubik(
+                        fontSize: 14, fontWeight: FontWeight.w500),
+                  )
                 ],
               ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 80),
-              child: Container(
-                child: Center(
-                    child: Text(
-                      "Add vaccination",
-                      style: GoogleFonts.hind(color: Colors.white),
-                    )),
-                width: 172,
-                height: 42,
-                decoration: BoxDecoration(
-                    color: Color(0xff5CB15A),
-                    borderRadius: BorderRadius.circular(12)),
+              Padding(
+                padding: EdgeInsets.only(left: 20, right: 20, top: 10),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Color(0xFFD9D9D9),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: TextFormField(
+                    controller: vaccinationnamectrl,
+                    validator: (value) {
+                      if (value == null || value.trim().isEmpty) {
+                        return 'Please enter vaccination name';
+                      }
+                      return null;
+                    },
+                    decoration: InputDecoration(
+                      hintText: "Enter your vaccination name",
+                      hintStyle: TextStyle(color: Colors.grey, fontSize: 12),
+                      border: InputBorder.none,
+                      contentPadding:
+                          EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                    ),
+                  ),
+                ),
               ),
-            )
-          ],
-        ),
-     ] ),
+              Row(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(top: 40.h, left: 10.w),
+                    child: Text(
+                      "Weight",
+                      style: GoogleFonts.rubik(
+                          fontSize: 14.sp, fontWeight: FontWeight.w500),
+                    ),
+                  )
+                ],
+              ),
+              Padding(
+                padding: EdgeInsets.only(left: 20.w, right: 20.w, top: 10.h),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Color(0xFFD9D9D9),
+                    borderRadius: BorderRadius.circular(12.r),
+                  ),
+                  child: TextFormField(
+                    controller: weightctrl,
+                    keyboardType: TextInputType.number,
+                    validator: (value) {
+                      if (value == null || value.trim().isEmpty) {
+                        return 'Please enter weight';
+                      }
+                      final num? weight = num.tryParse(value);
+                      if (weight == null || weight <= 0) {
+                        return 'Enter a valid weight';
+                      }
+                      return null;
+                    },
+                    decoration: InputDecoration(
+                      hintText: "Enter your pet weight",
+                      hintStyle: TextStyle(color: Colors.grey, fontSize: 12.sp),
+                      border: InputBorder.none,
+                      contentPadding:
+                          EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                    ),
+                  ),
+                ),
+              ),
+              Row(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(top: 40, left: 10),
+                    child: Text(
+                      "Status",
+                      style: GoogleFonts.rubik(
+                          fontSize: 14, fontWeight: FontWeight.w500),
+                    ),
+                  )
+                ],
+              ),
+              Padding(
+                padding: EdgeInsets.only(left: 20, right: 20, top: 10),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Color(0xFFD9D9D9),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: TextFormField(
+                    controller: statusctrl,
+                    validator: (value) {
+                      if (value == null || value.trim().isEmpty) {
+                        return 'Please enter status';
+                      }
+                      return null;
+                    },
+                    decoration: InputDecoration(
+                      hintText: "Completed",
+                      hintStyle: TextStyle(color: Colors.grey, fontSize: 12),
+                      border: InputBorder.none,
+                      contentPadding:
+                          EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                    ),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: 80),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Padding(
+                        padding: EdgeInsets.only(left: 20, right: 10),
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: selectedDose == 'first'
+                                ? Color(0xff238F8F)
+                                : Colors.white,
+                            side: BorderSide(color: Colors.black),
+                          ),
+                          onPressed: () =>
+                              setState(() => selectedDose = 'first'),
+                          child: Text("First dose",
+                              style: TextStyle(
+                                  color: selectedDose == 'first'
+                                      ? Colors.white
+                                      : Colors.green)),
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 10),
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: selectedDose == 'second dose'
+                                ? Color(0xff238F8F)
+                                : Colors.white,
+                            side: BorderSide(color: Colors.black),
+                          ),
+                          onPressed: () =>
+                              setState(() => selectedDose = 'second dose'),
+                          child: Text("Second dose",
+                              style: TextStyle(
+                                  color: selectedDose == 'second'
+                                      ? Colors.white
+                                      : Colors.green)),
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: Padding(
+                        padding: EdgeInsets.only(right: 20, left: 10),
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: selectedDose == 'third dose'
+                                ? Color(0xff238F8F)
+                                : Colors.white,
+                            side: BorderSide(color: Colors.black),
+                          ),
+                          onPressed: () =>
+                              setState(() => selectedDose = 'third dose'),
+                          child: Text("Booster",
+                              style: TextStyle(
+                                  color: selectedDose == 'third dose'
+                                      ? Colors.white
+                                      : Colors.green)),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: 80),
+                child: GestureDetector(
+                  onTap: () {
+                    if (form_key.currentState!.validate()) {
+                      addvaccination();
+                    }
+                  },
+                  child: Container(
+                    child: Center(
+                      child: Text(
+                        "Add vaccination",
+                        style: GoogleFonts.hind(color: Colors.white),
+                      ),
+                    ),
+                    width: 172,
+                    height: 42,
+                    decoration: BoxDecoration(
+                      color: Color(0xff5CB15A),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                ),
+              )
+            ],
+          ),
+        ]),
+      ),
     );
   }
 }
