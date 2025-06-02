@@ -8,9 +8,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:petwell_project/Admin/admin_user.dart';
 
 class AdminViewUserDetails extends StatefulWidget {
-  const AdminViewUserDetails(required, {super.key, reguirde, required this.id});
-  final id;
+  const AdminViewUserDetails(required, {super.key, required this. id,});
 
+final id;
   @override
   State<AdminViewUserDetails> createState() => _AdminViewUserDetailsState();
 }
@@ -42,7 +42,7 @@ class _AdminViewUserDetailsState extends State<AdminViewUserDetails> {
         body: FutureBuilder(
             future: FirebaseFirestore.instance
                 .collection("user_signup")
-                .doc(widget.id)
+                .doc()
                 .get(),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {

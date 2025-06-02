@@ -1,9 +1,13 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:petwell_project/Admin/admin_login.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
+import 'Admin_add_food details.dart';
 import 'Admin_doctor.dart';
 import 'admin_add_grooming.dart';
 import 'admin_notification.dart';
@@ -17,6 +21,12 @@ class UserDetails extends StatefulWidget {
 }
 
 class _UserDetailsState extends State<UserDetails> {
+  Future<void> logout() async {
+    await FirebaseAuth.instance.signOut();
+    await GoogleSignIn().signOut();
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.clear(); // Clears all stored keys
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -210,7 +220,7 @@ class _UserDetailsState extends State<UserDetails> {
                       onTap: () {
                         Navigator.push(context, MaterialPageRoute(
                           builder: (context) {
-                            return AdminAddGrooming();
+                            return AdminAddFood_details();
                           },
                         ));
                       },
@@ -325,9 +335,13 @@ class _UserDetailsState extends State<UserDetails> {
                               Padding(
                                   padding:
                                       EdgeInsets.only(top: 30.h, left: 70.w),
-                                  child: Icon(
-                                    Icons.logout,
-                                    size: 40.sp,
+                                  child: IconButton(
+                                    icon: Icon(Icons.logout),
+                                    onPressed: () async {
+                                      await FirebaseAuth.instance.signOut();
+                                      await GoogleSignIn().signOut();
+                                      Navigator.pushReplacementNamed(context, '/login');
+                                    },
                                   ))
                             ],
                           ),

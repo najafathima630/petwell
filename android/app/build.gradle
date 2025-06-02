@@ -10,7 +10,7 @@ plugins {
 
 android {
     namespace = "com.example.petwell_project"
-    compileSdk = 34   // Set manually
+    compileSdk = 35   // Set manually
     ndkVersion = flutter.ndkVersion
 
     compileOptions {
@@ -25,7 +25,7 @@ android {
     defaultConfig {
         applicationId = "com.example.petwell_project"
         minSdk = 23  // Set manually if needed
-        targetSdk = 33 // Set manually
+        targetSdk = 35 // Set manually
         versionCode = flutter.versionCode
         versionName = flutter.versionName
     }

@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:petwell_project/user/user_homa_page.dart';
 
 import 'Navigation_user.dart';
@@ -15,6 +18,18 @@ class _PetProfilePageState extends State<PetProfilePage> {
   String? selectedWeight;
   String _selectedGender = "";
   DateTime? selectedDate;
+  File? _image;
+
+  Future<void> _pickImage() async {
+    final pickedFile =
+    await ImagePicker().pickImage(source: ImageSource.gallery);
+
+    if (pickedFile != null) {
+      setState(() {
+        _image = File(pickedFile.path);
+      });
+    }
+  }
 
   Future<void> _selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
@@ -42,7 +57,6 @@ class _PetProfilePageState extends State<PetProfilePage> {
       "color": selectedColor,
       "gender": _selectedGender,
       "weight": selectedWeight,
-
     });
     print("Success");
     Navigator.push(context, MaterialPageRoute(
@@ -104,8 +118,19 @@ class _PetProfilePageState extends State<PetProfilePage> {
                 radius: 50,
                 backgroundImage: AssetImage("assets/images (3) 2.png"),
               ),
+              _image == null
+                  ? Center(child: Text('No image selected'))
+                  : Image.file(
+                      _image!,
+                      fit: BoxFit.cover,
+                    ),
+              SizedBox(height: 1),
+              ElevatedButton(
+                onPressed: _pickImage,
+                child: Text('Pick Image'),
+              ),
               SizedBox(height: 10),
-              Text( "Name",
+              Text("Name",
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
               SizedBox(height: 20),
               TextField(
